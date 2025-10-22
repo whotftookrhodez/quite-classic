@@ -315,17 +315,17 @@ html, body {
     }
 
     .main__content h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
     }
 
     .main__content h2 {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
     .main__content p {
-        font-size: 0.5rem;
-        margin-bottom: 0.5rem;
+        font-size: .75rem;
+        margin-bottom: 0.75rem;
     }
 }
