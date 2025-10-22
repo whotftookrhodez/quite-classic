@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $username, $password, $email);
 
     if ($stmt->execute()) {
-        echo "account created. <a href='login.html'>log in</a>";
+        echo "account created. <a href='login'>log in</a>";
     } else {
         echo "error: " . $stmt->error;
     }
