@@ -29,7 +29,7 @@
                     <a href="/audio.html" class="navbar__links">audio</a>
                 </li>
                  <li class="navbar__item">
-                    <a href="/visual.html" class="navbar__links">visual (here)</a>
+                    <a href="/visual.html" class="navbar__links">* visual</a>
                 </li>
                 <li class="navbar__item">
                     <a href="/other.html" class="navbar__links">other</a>
@@ -43,18 +43,63 @@
     <div class="main">
         <div class="main__container">
             <div class="main__content">
-                <h1>quite classic</h1>
-                <h2>a free use, independent and community ran art distrubtion site</h2>
-                <p>if you're new here, we suggest the <a href="/about.html">about</a> section</p>
-                <p>if you'd like to browse our audio art, click <a href="/audio.html">here</a></p>
-                <p>if you'd like to browse our visual art, click <a href="/visual.html">here</a></p>
-                <p>if you'd like to browse our miscellaneous art, click <a href="/other.html">here</a></p>
-                <p>if you'd like to upload to our site, click <a href="/upload.html">here</a></p>
-                <p>git repo <a href="https://github.com/whotftookrhodez/quite-classic" target="_blank">here</a></p>
-                <button class="main__btn" onclick="location.href='/'">test button!!!</button>
+
+
+                <!-- Image + Text layout -->
+                <div class="media-item image-item">
+                    <div class="media-left">
+                        <a href="assets/visual/G0pzkecXQAAzzNr.jpg" target="_blank">
+                            <img src="assets/visual/G0pzkecXQAAzzNr.jpg" alt="kirk twerk" class="responsive-image">
+                        </a>
+                    </div>
+                    <div class="media-right">
+                        <p class="image-text">dummy text</p>
+                        <a href="assets/visual/G0pzkecXQAAzzNr.jpg" download class="main__btn download-btn">download image</a>
+                    </div>
+                </div>
+
+             <!-- Audio with cover layout -->
+                <div class="media-item audio-item">
+                    <img src="assets/audio/cover.jpg" alt="Audio Cover" class="audio-cover">
+                    <audio controls>
+                        <source src="assets/audio/sample-audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p class="audio-text">sample audio description here.</p>
+                    <a href="#" class="main__btn download-btn" 
+                       onclick="downloadAudioPackage('assets/audio/sample-audio.mp3', 'assets/audio/cover.jpg')">
+                       download audio + cover
+                    </a>
+                </div>
+
+
+
+                <!-- Video with cover layout -->
+                <div class="media-item video-item">
+                    <img src="assets/video/cover.jpg" alt="Video Cover" class="video-cover">
+                    <video controls class="video-player">
+                        <source src="assets/video/sample-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="video-text">sample video description here.</p>
+                    <a href="#" class="main__btn download-btn"
+                       onclick="downloadVideoPackage('assets/video/sample-video.mp4', 'assets/video/cover.jpg')">
+                       download video + cover
+                    </a>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+
     <script src="app.js"></script>
 </body>
 </html>
