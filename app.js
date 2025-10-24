@@ -39,3 +39,24 @@ async function downloadVideoPackage(videoUrl, coverUrl) {
     a.download = "video_package.zip";
     a.click();
 }
+
+async function downloadAlbumPackage(audioUrls, coverUrl) {
+    const zip = new JSZip();
+
+    // Fetch the album cover
+    const coverData = await fetch(coverUrl).then(r => r.blob());
+    zip.file("cover.jpg", coverData);  // Add the album cover image to the ZIP file
+
+    // Loop through the audio files and add them to the ZIP file
+    for (let i = 0; i < audioUrls.length; i++) {
+        const audioData = await fetch(audioUrls[i]).then(r => r.blob());
+        zip.file(`audio_${i + 1}.mp3`, audioData);  // Add audio files with sequential naming
+    }
+
+    // Generate the ZIP file and trigger the download
+    const content = await zip.generateAsync({ type: "blob" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(content);
+    a.download = "album_package.zip";  // Name the ZIP file
+    a.click();
+}

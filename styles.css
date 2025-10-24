@@ -319,26 +319,18 @@ a {
 
 
 
-/* Fix image aspect ratio */
-.responsive-image {
-    display: block;
-    max-width: 100%;
-    height: auto; /* Prevents distortion */
-    border-radius: 4px;
-}
-
-/* Layout for media items */
+/* Layout for media items (Image + Text or Video + Text) */
 .media-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;  /* Ensure items are aligned from the start */
     gap: 2rem;
     margin-bottom: 3rem;
     flex-wrap: wrap;
     text-align: left;
 }
 
-/* Specific layout for image+text */
+/* Specific layout for image+text: text to the right of the image */
 .image-item .media-left {
     flex: 1 1 50%;
     text-align: center;
@@ -351,6 +343,29 @@ a {
     flex-direction: column;
     justify-content: center;
 }
+
+/* Specific layout for video+text: text to the right of the video */
+.video-item .media-left {
+    flex: 1 1 50%;
+    text-align: center;
+}
+
+
+.image-item .media-right {
+    flex: 1 1 50%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  /* Center the content horizontally */
+    text-align: center;  /* Center the text */
+}
+
+.image-text {
+    margin-top: 1rem;  /* Add spacing above the text */
+    font-size: 1.2rem;  /* You can adjust the font size here if needed */
+}
+
 
 /* Audio layout */
 .audio-item {
@@ -374,7 +389,7 @@ a {
     margin-top: 1rem;
 }
 
-/* Mobile layout: stack text under image */
+/* Mobile layout: stack text under image/video */
 @media screen and (max-width: 768px) {
     .media-item {
         flex-direction: column;
@@ -382,15 +397,17 @@ a {
     }
 
     .image-item .media-left,
-    .image-item .media-right {
+    .image-item .media-right,
+    .video-item .media-left,
+    .video-item .media-right {
         flex: 1 1 100%;
     }
 
-    .image-item .media-right {
+    .image-item .media-right,
+    .video-item .media-right {
         margin-top: 1rem;
     }
 }
-
 
 /* === VIDEO BLOCK === */
 .video-item {
