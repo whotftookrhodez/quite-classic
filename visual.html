@@ -40,84 +40,39 @@
             </ul>
         </div>
     </nav>
-    <div class="main">
-        <div class="main__container">
-            <div class="main__content">
-
-
-                <div class="media-item image-item">
-                    <div class="media-left">
-                        <a href="assets/visual/G0pzkecXQAAzzNr.jpg" target="_blank">
-                            <img src="assets/visual/G0pzkecXQAAzzNr.jpg" alt="kirk twerk" class="responsive-image">
-                        </a>
-                    </div>
-                    <div class="media-right">
-                        <p class="image-text">dummy text</p>
-                        <a href="assets/visual/G0pzkecXQAAzzNr.jpg" download class="main__btn download-btn">download image</a>
-                    </div>
-                </div>
-
-                <div class="media-item audio-item">
-                    <img src="assets/audio/album-cover.jpg" alt="Album Cover" class="audio-cover">
-                    <p class="audio-text">dummy text</p>
-                    <audio controls>
-                        <source src="assets/audio/sample-audio-1.mp3" type="audio/mpeg">
-                        no browser support
-                    </audio>
-                    <audio controls>
-                        <source src="assets/audio/sample-audio-2.mp3" type="audio/mpeg">
-                        no browser support
-                    </audio>
-                    <audio controls>
-                        <source src="assets/audio/sample-audio-3.mp3" type="audio/mpeg">
-                        no browser support
-                    </audio>
-                    <a href="#" class="main__btn download-btn" 
-                       onclick="downloadAlbumPackage([
-                            'assets/audio/sample-audio-1.mp3',
-                            'assets/audio/sample-audio-2.mp3',
-                            'assets/audio/sample-audio-3.mp3'
-                       ], 'assets/audio/album-cover.jpg')">
-                       download (audio + cover)
+    <div class="main__container">
+       <div class="main__content">
+            <div class="media-item image-item">
+                <div class="media-left">
+                    <a href="assets/visual/Untitled1752_20250801092703.png" target="_blank">
+                        <img src="assets/visual/Untitled1752_20250801092703.png" alt="Untitled1752_20250801092703.png" class="image/png">
                     </a>
                 </div>
+                <div class="media-right">
+                    <p class="image-text">sea shore - untitled oc art</p>
+                    <a href="assets/visual/Untitled1752_20250801092703.png" download class="main__btn download-btn">download</a>
+                </div>
+            </div>
 
-
-
-
-        <div class="media-item video-item">
-                  <div class="video-content">
-                    <img src="assets/visual/cover.jpg" alt="Video Cover" class="video-cover">
+            <div class="media-item video-item">
+                <div class="video-content">
+                    <img src="assets/visual/Drool_death_loop.gif" alt="Video Cover" class="video-cover">
                     <video controls class="video-player">
-                      <source src="assets/visual/sample-video.mp4" type="video/mp4">
-                      no browser support
+                        <source src="assets/visual/this beat is the shit freestyle.mp4" type="video/mp4">
                     </video>
-                  </div>
-
-                  <p class="video-text">dummy text</p>
-
-                  <a href="#"
-                     class="main__btn download-btn"
-                     onclick="downloadVideoPackage('assets/video/sample-video.mp4', 'assets/video/cover.jpg')">
-                     download video + cover
-                  </a>
                 </div>
 
+                <p class="video-text">dummy text</p>
 
-
-
-
-
-
+                <a href="#"
+                    class="main__btn download-btn"
+                    onclick="downloadVisual('assets/visual/sample-video.mp4', 'assets/video/cover.jpg')">
+                    download
+                </a>
             </div>
         </div>
     </div>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-
-
     <script src="app.js"></script>
 </body>
 </html>
