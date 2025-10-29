@@ -24,8 +24,8 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 
     zip.file("cover.png", coverData);
 
-    const content = await zip.generateAsync({type: "blob"});
     const a = document.createElement("a");
+    const content = await zip.generateAsync({type: "blob"});
 
     a.href = URL.createObjectURL(content);
     a.download = `${title || "zip"}.zip`;
@@ -33,7 +33,7 @@ async function downloadAudio(audioUrls, coverUrl, title) {
     a.click();
 }
 
-async function downloadVisual(visualUrl, coverUrl) {
+async function downloadVisual(visualUrl, coverUrl, btn) {
     const zip = new JSZip();
 
     const visualData = await fetch(visualUrl).then(r => r.blob());
@@ -42,11 +42,29 @@ async function downloadVisual(visualUrl, coverUrl) {
     zip.file(getFileNameFromUrl(visualUrl), visualData);
     zip.file("cover.png", coverData);
 
-    const content = await zip.generateAsync({type: "blob"});
     const a = document.createElement("a");
+    const content = await zip.generateAsync({type: "blob"});
+    const container = btn.closest('.media-item');
+    const videoTitle = container.querySelector('.video-text').textContent.trim();
 
     a.href = URL.createObjectURL(content);
-    a.download = getFileNameFromUrl(visualUrl).replace(/\.[^/.]+$/, "") + ".zip";
+    a.download = `${videoTitle}.zip`;
 
     a.click();
 }
+
+document.querySelectorAll('.image-item .main__btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+        e.preventDefault();
+
+        const a = document.createElement('a');
+        const fileUrl = btn.getAttribute('href');
+        const container = btn.closest('.media-item');
+        const imageTitle = container.querySelector('.image-text').textContent.trim();
+
+        a.href = fileUrl;
+        a.download = imageTitle + fileUrl.substring(fileUrl.lastIndexOf('.'));
+
+        a.click();
+    });
+});
