@@ -439,6 +439,10 @@ audio::-webkit-media-controls-volume-slider {
   margin-top: 2.4rem;
 }
 
+.only {
+  margin-top: 1.2rem;
+}
+
 .video-item {
   display: flex;
   flex-direction: column;
