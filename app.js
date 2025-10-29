@@ -14,7 +14,7 @@ async function downloadAudio(audioUrls, coverUrl, title) {
     const zip = new JSZip();
 
     for (const url of audioUrls) {
-        const fileName = url.split('/').pop().split('?')[0];
+        const fileName = getFileNameFromUrl(url);
         const audioData = await fetch(url).then(r => r.blob());
         
         zip.file(fileName, audioData);
@@ -28,7 +28,7 @@ async function downloadAudio(audioUrls, coverUrl, title) {
     const content = await zip.generateAsync({type: "blob"});
 
     a.href = URL.createObjectURL(content);
-    a.download = `${title || "zip"}.zip`;
+    a.download = `${title}.zip`;
 
     a.click();
 }
