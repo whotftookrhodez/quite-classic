@@ -33,6 +33,22 @@ async function downloadAudio(audioUrls, coverUrl, title) {
     a.click();
 }
 
+document.querySelectorAll('.image-item .main__btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+        e.preventDefault();
+
+        const a = document.createElement('a');
+        const fileUrl = btn.getAttribute('href');
+        const container = btn.closest('.media-item');
+        const imageTitle = container.querySelector('.image-text').textContent.trim();
+
+        a.href = fileUrl;
+        a.download = imageTitle + fileUrl.substring(fileUrl.lastIndexOf('.'));
+
+        a.click();
+    });
+});
+
 async function downloadVisual(visualUrl, coverUrl, btn) {
     const zip = new JSZip();
 
@@ -52,19 +68,3 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
 
     a.click();
 }
-
-document.querySelectorAll('.image-item .main__btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-        e.preventDefault();
-
-        const a = document.createElement('a');
-        const fileUrl = btn.getAttribute('href');
-        const container = btn.closest('.media-item');
-        const imageTitle = container.querySelector('.image-text').textContent.trim();
-
-        a.href = fileUrl;
-        a.download = imageTitle + fileUrl.substring(fileUrl.lastIndexOf('.'));
-
-        a.click();
-    });
-});
