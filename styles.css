@@ -513,6 +513,10 @@ audio::-webkit-media-controls-volume-slider {
     margin-top: 1.2rem;
   }
 
+  .only {
+    margin-top: 0.6rem;
+  }
+
   .video-text {
     margin-top: 3.6rem;
   }
