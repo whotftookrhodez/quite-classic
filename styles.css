@@ -393,6 +393,18 @@ audio::-webkit-media-controls-volume-slider:hover {
   margin-top: 1.2rem;
 }
 
+.main__content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+.multiple {
+  margin-top: 1.2rem;
+}
+
 .media-left,
 .media-right {
   display: flex;
