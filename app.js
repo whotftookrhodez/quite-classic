@@ -25,7 +25,7 @@ async function downloadAudio(audioUrls, coverUrl, title) {
     zip.file("cover.png", coverData);
 
     const a = document.createElement("a");
-    const content = await zip.generateAsync({type: "blob"});
+    const content = await zip.generateAsync({ type: "blob" });
 
     a.href = URL.createObjectURL(content);
     a.download = `${title}.zip`;
@@ -59,7 +59,7 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
     zip.file("cover.png", coverData);
 
     const a = document.createElement("a");
-    const content = await zip.generateAsync({type: "blob"});
+    const content = await zip.generateAsync({ type: "blob" });
     const container = btn.closest('.media-item');
     const videoTitle = container.querySelector('.video-text').textContent.trim();
 
