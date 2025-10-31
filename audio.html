@@ -43,6 +43,21 @@
     <div class="main__container">
         <div class="main__content">
             <div class="media-item audio-item">
+                <img src="assets/audio/download/assembling-machine-t3-1 cover.png" alt="cover.png" class="audio-cover">
+                <p class="audio-text">AfterTrasen - assembling-machine-t3-1</p>
+                <audio controls controlsList="nodownload noplaybackrate">
+                    <source src="assets/audio/stream/assembling-machine-t3-1.mp3" type="audio/mpeg">
+                </audio>
+                <a href="#" class="main__btn"
+                   onclick="downloadAudio(
+                       ['assets/audio/download/assembling-machine-t3-1.flac'],
+                       'assets/audio/download/assembling-machine-t3-1 cover.png',
+                       this.closest('.audio-item').querySelector('.audio-text').textContent
+                   )">
+                   download
+                </a>
+            </div>
+            <div class="media-item audio-item">
                 <img src="assets/audio/download/Untitled Techno Demo cover.png" alt="cover.png" class="audio-cover">
                 <p class="audio-text">AfterTrasen - Untitled Techno Demo</p>
                 <audio controls controlsList="nodownload noplaybackrate">
