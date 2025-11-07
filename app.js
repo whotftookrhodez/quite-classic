@@ -78,12 +78,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
 
         .then(data => {
+            const title = `site info \n --- \n`
+
             const diskInfo = 
                 `used: ${data.used_gb} gb <br>` +
                 `free: ${data.free_gb} gb <br>` +
                 `last updated: ${new Date(data.last_updated).toLocaleString()} <br>`;
 
-            infoElement.innerHTML = diskInfo;
+            infoElement.innerHTML = title + diskInfo;
 
             const bootTime = new Date(data.boot_time);
 
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const minutes = Math.floor(diff / 60);
                 const seconds = diff % 60;
 
-                infoElement.innerHTML = diskInfo + `uptime: ${hours}h ${minutes}m ${seconds}s`;
+                infoElement.innerHTML = title + diskInfo + `uptime: ${hours}h ${minutes}m ${seconds}s`;
             }
 
             updateUptime();
