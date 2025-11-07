@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const title = `<br>` + `site info<br>` + `<br>`;
 
             const diskInfo = 
-                `used / free storage: ${data.used_gb} gb, ${data.free_gb} gb<br>` +
+                `CRON TEST used / free storage: ${data.used_gb} gb, ${data.free_gb} gb<br>` +
                 `last updated: ${new Date(data.last_updated).toLocaleString().toLowerCase()}<br>`;
 
             infoElement.innerHTML = title + diskInfo;
