@@ -70,20 +70,45 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const storageElement = document.getElementById("storage");
+    const infoElement = document.getElementById("info");
 
-    if (!storageElement) return;
+    if (!infoElement) return;
 
-    fetch("disk.json")
+    fetch("info.json")
         .then(response => response.json())
 
         .then(data => {
-            storageElement.innerText = `disk info: \n used: ${data.used_gb} gb \n free: ${data.free_gb} gb`;
+            const diskInfo = 
+                `used: ${data.used_gb} gb <br>` +
+                `free: ${data.free_gb} gb <br>` +
+                `last updated: ${new Date(data.last_updated).toLocaleString()} <br>`;
+
+            infoElement.innerHTML = diskInfo;
+
+            const bootTime = new Date(data.boot_time);
+
+            function updateUptime() {
+                const now = new Date();
+                
+                let diff = Math.floor((now - bootTime) / 1000);
+
+                const hours = Math.floor(diff / 3600);
+
+                diff %= 3600;
+
+                const minutes = Math.floor(diff / 60);
+                const seconds = diff % 60;
+
+                infoElement.innerHTML = diskInfo + `uptime: ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            updateUptime();
+            setInterval(updateUptime, 1000);
         })
 
         .catch(error => {
-            storageElement.innerText = "disk info nil";
+            infoElement.innerText = "info nil";
 
-            console.error("error loading disk info: ", error);
+            console.error("error loading info: ", error);
         });
 });
