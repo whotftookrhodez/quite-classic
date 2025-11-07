@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
 
         .then(data => {
-            storageElement.innerText = `total: ${data.total_gb} gb | used: ${data.used_gb} gb | free: ${data.free_gb} gb`;
+            storageElement.innerText = `disk info: \n used: ${data.used_gb} gb \n free: ${data.free_gb} gb`;
         })
 
         .catch(error => {
