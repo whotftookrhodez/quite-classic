@@ -5,7 +5,7 @@ import datetime
 import subprocess
 import json
 
-used, free = shutil.disk_usage("/")
+total, used, free = shutil.disk_usage("/")
 last_updated = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
 try:
