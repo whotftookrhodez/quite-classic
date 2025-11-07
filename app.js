@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
 
         .then(data => {
-            const title = `site info<br>---<br>`;
+            const title = `<br>---<br>site info<br>---<br>`;
 
             const diskInfo = 
                 `<br>used storage: ${data.used_gb} gb / ${data.total_gb} gb<br>` +
