@@ -78,11 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
 
         .then(data => {
-            const title = `site info<br>`;
+            const title = `site info:`;
 
             const diskInfo = 
-                `<br>used storage: ${data.used_gb} gb / ${data.total_gb} gb<br>` +
-                `last updated: ${new Date(data.last_updated).toLocaleString().toLowerCase()}`;
+                `<br>used storage - ${data.used_gb} gb / ${data.total_gb} gb<br>` +
+                `last updated - ${new Date(data.last_updated).toLocaleString().toLowerCase()}`;
 
             infoElement.innerHTML = title + diskInfo;
 
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const minutes = Math.floor(diff / 60);
                 const seconds = diff % 60;
 
-                infoElement.innerHTML = title + diskInfo + `<br>uptime: ${hours}h ${minutes}m ${seconds}s`;
+                infoElement.innerHTML = title + diskInfo + `<br>uptime - ${hours}h ${minutes}m ${seconds}s`;
             }
 
             updateUptime();
