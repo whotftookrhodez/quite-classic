@@ -68,3 +68,22 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
 
     a.click();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const storageElement = document.getElementById("storage");
+
+    if (!storageElement) return;
+
+    fetch("disk.json")
+        .then(response => response.json())
+
+        .then(data => {
+            storageElement.innerText = `total: ${data.total_gb} gb | used: ${data.used_gb} gb | free: ${data.free_gb} gb`;
+        })
+
+        .catch(error => {
+            storageElement.innerText = "disk info nil";
+
+            console.error("error loading disk info: ", error);
+        });
+});
