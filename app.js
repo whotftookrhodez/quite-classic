@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
         })
 
         .catch(error => {
-            infoElement.innerText = "info nil";
+            infoElement.innerText = "site info nil";
 
-            console.error("error loading info: ", error);
+            console.error("error loading site info: ", error);
         });
 });
