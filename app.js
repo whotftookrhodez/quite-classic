@@ -78,12 +78,12 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
 
         .then(data => {
-            const title = `site info <br> --- <br>`
+            const title = `site info<br>---<br>`;
 
             const diskInfo = 
-                `used: ${data.used_gb} gb <br>` +
-                `free: ${data.free_gb} gb <br>` +
-                `last updated: ${new Date(data.last_updated).toLocaleString()} <br>`;
+                `used: ${data.used_gb} gb<br>` +
+                `free: ${data.free_gb} gb<br>` +
+                `last updated: ${new Date(data.last_updated).toLocaleString()}<br>`;
 
             infoElement.innerHTML = title + diskInfo;
 
