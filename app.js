@@ -125,15 +125,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });     
     }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('/audio.html')) {
-        document.querySelectorAll('.audio-item .audio-text').forEach(img => {
-            img.addEventListener('click', function() {
-                const title = this.closest('.audio-item').querySelector('.audio-text').textContent;
-                let slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
-                window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
-            });
-        });     
-    }
-});
