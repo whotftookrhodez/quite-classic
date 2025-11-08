@@ -1,7 +1,6 @@
 <?php
 $slug = $_GET['slug'] ?? '';
 $slugLower = strtolower(str_replace(' ', '-', trim($slug, '/')));
-
 $audioJsonPath = __DIR__ . '/audio.json';
 $audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
 $audioData = json_decode($audioJson, true);
@@ -9,24 +8,27 @@ $audioDataLower = array_change_key_case($audioData, CASE_LOWER);
 
 $current = $slugLower && isset($audioDataLower[$slugLower]) ? $audioDataLower[$slugLower] : null;
 
-function h($string) {
-    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
-}
+function h($string) { return htmlspecialchars($string, ENT_QUOTES, 'UTF-8'); }
 
 $ogTitle = $current['title'] ?? 'quite classic';
 $ogImage = $current['cover'] ?? '';
-$ogUrl = $slug ? "https://quiteclassic.org/audio/" . urlencode($slug) : 'https://quiteclassic.org/';
+$ogUrl   = $slug ? "https://quiteclassic.org/audio/" . urlencode($slug) : 'https://quiteclassic.org/';
+$ogImageWidth = 800;
+$ogImageHeight = 800;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= h($ogTitle) ?> – quite classic</title>
-<link rel="stylesheet" href="/styles.css">
-<?php if ($current): ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= h($ogTitle) ?> – quite classic</title>
+    <link rel="stylesheet" href="/styles.css">
+    <?php if ($current): ?>
     <meta property="og:title" content="<?= h($ogTitle) ?>">
     <meta property="og:image" content="https://quiteclassic.org<?= h($ogImage) ?>">
+    <meta property="og:image:width" content="<?= $ogImageWidth ?>">
+    <meta property="og:image:height" content="<?= $ogImageHeight ?>">
     <meta property="og:description" content="on quiteclassic.org">
     <meta property="og:url" content="<?= h($ogUrl) ?>">
     <meta property="og:type" content="music.song">
