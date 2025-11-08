@@ -370,10 +370,12 @@ audio::-webkit-media-controls-volume-slider:hover {
   margin: 2rem auto;
 }
 
+/*
 .audio-item audio {
   width: 80%;
   max-width: 243.75px;
 }
+*/
 
 .audio-item audio {
   width: 100%;
