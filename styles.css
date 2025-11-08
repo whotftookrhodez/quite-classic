@@ -362,7 +362,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   align-items: center !important;
   justify-content: center !important;
   width: 100%;
-  max-width: 100%;
+  max-width: 325px;
   text-align: center;
   border: 2px solid #808080;
   border-radius: 8px;
@@ -370,16 +370,9 @@ audio::-webkit-media-controls-volume-slider:hover {
   margin: 2rem auto;
 }
 
-/*
 .audio-item audio {
   width: 80%;
   max-width: 243.75px;
-}
-*/
-
-.audio-item audio {
-  width: 100%;
-  max-width: 325px;
 }
 
 .audio-item .main__btn {
