@@ -1,6 +1,13 @@
 <?php
 
-$slug = $_GET['slug'] ?? '';
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$slug = trim($path, '/');
+$slug = strtolower(str_replace(' ', '-', $slug));
+$known_pages = ['about.html', 'audio.html', 'index.html', 'licenses.html', 'other.html', 'upload.html', 'visual.html'];
+
+if (in_array($slug, $known_pages)) {
+    $slug = '';
+}
 
 $audioJsonPath = __DIR__ . '/audio.json';
 $audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
