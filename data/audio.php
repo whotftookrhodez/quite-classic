@@ -3,17 +3,19 @@
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $slug = trim($path, '/');
 $slug = preg_replace('/\.html$/i', '', $slug);
-$slug = strtolower(str_replace(' ', '-', $slug));
+$slug = str_replace(' ', '-', $slug);
+$slugLower = strtolower($slug);
 $known_pages = ['about', 'audio', 'index', 'licenses', 'other', 'upload', 'visual'];
 
-if (in_array($slug, $known_pages)) {
-    $slug = '';
+if (in_array($slugLower, $known_pages)) {
+    $slugLower = '';
 }
 
 $audioJsonPath = __DIR__ . '/audio.json';
 $audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
 $audioData = json_decode($audioJson, true);
-$item = $audioData[$slug] ?? null;
+$audioDataLower = array_change_key_case($audioData, CASE_LOWER);
+$item = $audioDataLower[$slugLower] ?? null;
 
 if (!$item) {
     $item = [
@@ -42,7 +44,7 @@ function h($string) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($item['title']) ?> – quite classic</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <meta property="og:image" content="https://quiteclassic.org<?= h($item['cover']) ?>">
     <meta property="og:title" content="<?= h($item['title']) ?>">
     <meta property="og:description" content="on quiteclassic.org">
