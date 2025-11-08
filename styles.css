@@ -385,6 +385,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   height: auto;
   object-fit: contain;
   border-radius: 8px;
+  user-select: none;
 }
 
 .audio-text {
@@ -430,6 +431,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   overflow: hidden;
   margin: 2rem auto;
   padding: 1.2rem;
+  user-select: none;
 }
 
 .image-item .media-left img {
@@ -477,6 +479,10 @@ audio::-webkit-media-controls-volume-slider:hover {
   max-width: 100%;
   flex-wrap: nowrap;
   overflow: hidden;
+}
+
+.video-cover {
+  user-select: none;
 }
 
 .video-cover,

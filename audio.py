@@ -56,8 +56,8 @@ def render_audio_item(item):
 
     return f'''
 <div class="media-item audio-item">
-    <img src="{h(cover)}" alt="cover.png" class="audio-cover">
-    <p class="audio-text">{h(title)}</p>
+    <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
+    <p class="audio-text clickable">{h(title)}</p>
     {audio_html}
     <a class="main__btn"
        onclick="downloadAudio([{flac_list_str}], '{h(cover)}', this.closest('.audio-item').querySelector('.audio-text').textContent)">
