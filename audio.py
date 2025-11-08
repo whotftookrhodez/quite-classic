@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, json, re, shutil, pathlib, urllib.parse
+import os, json, shutil, pathlib, urllib.parse
 
 SITE_BASE = 'https://quiteclassic.org'
 ROOT = '/var/www/html'
@@ -12,15 +12,13 @@ def read_json(path):
         return json.load(f)
 
 def slugify(s):
-    s = (s or '').lower()
-    s = re.sub(r'[^a-z0-9]', '_', s)
-    s = re.sub(r'_+', '_', s)
-    return s.strip('_')
+    return ''.join(c if c.isalnum() else '_' for c in s.lower())
 
 def clear_out_dir(folder):
     if os.path.exists(folder):
         for name in os.listdir(folder):
             path = os.path.join(folder, name)
+
             try:
                 if os.path.isfile(path) or os.path.islink(path):
                     os.unlink(path)
@@ -35,12 +33,13 @@ def make_dirs(p):
 def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
-def render_audio_item(item, slug):
+def render_audio_item(item):
     title = item.get('title', '')
     cover = item.get('cover', '')
     tracks = item.get('tracks', [])
     audio_html = ""
     flac_files = []
+
     for track in tracks:
         mp3 = track.get('mp3', '')
         flac = track.get('flac', '')
@@ -48,30 +47,27 @@ def render_audio_item(item, slug):
         <audio controls controlsList="nodownload noplaybackrate">
             <source src="{h(mp3)}" type="audio/mpeg">
         </audio>'''
+
         if flac:
             flac_files.append(h(flac))
     flac_list_str = ', '.join(f"'{f}'" for f in flac_files)
-    page_link = f"/audio/{slug}"
+    
     return f'''
 <div class="media-item audio-item">
-    <a href="{page_link}">
-        <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
-        <p class="audio-text clickable">{h(title)}</p>
-    </a>
+    <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
+    <p class="audio-text clickable">{h(title)}</p>
     {audio_html}
-    <a class="main__btn"
-       onclick="downloadAudio([{flac_list_str}], '{h(cover)}', this.closest('.audio-item').querySelector('.audio-text').textContent)">
-       download
+    <a class="main__btn" onclick="downloadAudio([{flac_list_str}], '{h(cover)}', this.closest('.audio-item').querySelector('.audio-text').textContent)">
+        download
     </a>
 </div>
 '''
-
-def render_html_page(items_dict, current_slug=None):
-    current = items_dict.get(current_slug) if current_slug else None
+def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
-    og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(current_slug)}" if current_slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item, slug) for slug, item in items_dict.items()])
+    og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
+    audio_items_html = '\n'.join([render_audio_item(item) for item in items])
+    
     return f'''
 <!DOCTYPE html>
 <html lang="en">
@@ -129,23 +125,24 @@ def render_html_page(items_dict, current_slug=None):
 </body>
 </html>
 '''
-
 def main():
     data = read_json(DATA_JSON)
-    slug_map = {slugify(k): v for k, v in data.items()}
+    items = {slugify(k): v for k, v in data.items()}
 
     clear_out_dir(OUT_DIR)
     make_dirs(OUT_DIR)
 
-    for slug, item in slug_map.items():
-        html = render_html_page(slug_map, current_slug=slug)
+    for slug, item in items.items():
+        html = render_html_page([item], slug=slug, current=item)
         out_file = os.path.join(OUT_DIR, f'{slug}.html')
+
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
+        
+    all_html = render_html_page(list(items.values()))
 
-    all_html = render_html_page(slug_map)
     with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
-
+    
 if __name__ == '__main__':
     main()
