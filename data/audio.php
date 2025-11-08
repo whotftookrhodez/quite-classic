@@ -2,8 +2,9 @@
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $slug = trim($path, '/');
+$slug = preg_replace('/\.html$/i', '', $slug);
 $slug = strtolower(str_replace(' ', '-', $slug));
-$known_pages = ['about.html', 'audio.html', 'index.html', 'licenses.html', 'other.html', 'upload.html', 'visual.html'];
+$known_pages = ['about', 'audio', 'index', 'licenses', 'other', 'upload', 'visual'];
 
 if (in_array($slug, $known_pages)) {
     $slug = '';
