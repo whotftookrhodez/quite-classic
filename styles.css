@@ -454,7 +454,6 @@ audio::-webkit-media-controls-volume-slider:hover {
   color: #ffffff;
   font-size: 1.2rem;
   margin-top: 2.4rem;
-  cursor: default;
   user-select: none;
 }
 
