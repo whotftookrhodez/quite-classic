@@ -375,6 +375,12 @@ audio::-webkit-media-controls-volume-slider:hover {
   max-width: 243.75px;
 }
 
+.audio-item audio {
+  width: 100%;
+  max-width: 325px;
+  height: auto;
+}
+
 .audio-item .main__btn {
   margin-top: 1.2rem;
 }
