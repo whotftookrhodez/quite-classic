@@ -125,3 +125,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });     
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.audio-item').forEach(item => {
+        const cover = item.querySelector('.audio-cover');
+        const text = item.querySelector('.audio-text');
+
+        const goToAudioPage = () => {
+            const title = item.querySelector('.audio-text').textContent;
+            let slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
+            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+        };
+
+        cover.addEventListener('click', goToAudioPage);
+        text.addEventListener('click', goToAudioPage);
+
+        text.style.cursor = 'pointer';
+    });
+});
