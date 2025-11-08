@@ -391,6 +391,8 @@ audio::-webkit-media-controls-volume-slider:hover {
   color: #ffffff;
   font-size: 1.2rem;
   margin-top: 1.2rem;
+  cursor: default;
+  user-select: none;
 }
 
 .main__content p {
@@ -443,6 +445,8 @@ audio::-webkit-media-controls-volume-slider:hover {
   color: #ffffff;
   font-size: 1.2rem;
   margin-top: 2.4rem;
+  cursor: default;
+  user-select: none;
 }
 
 .only {
@@ -497,6 +501,8 @@ audio::-webkit-media-controls-volume-slider:hover {
   color: #ffffff;
   font-size: 1.2rem;
   margin-top: 1.2rem;
+  cursor: default;
+  user-select: none;
 }
 
 @media screen and (max-width: 960px) {
