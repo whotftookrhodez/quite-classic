@@ -1,23 +1,20 @@
 {
     "industrial_mess": {
-        "type": "image",
-        "file": "/assets/visual/Industrial mess.png",
+        "image": "/assets/visual/Industrial mess.png",
         "title": "AfterTrasen - Industrial mess"
     },
     "feelings_21": {
-        "type": "image",
-        "file": "/assets/visual/feelings 21.png",
+        "image": "/assets/visual/feelings 21.png",
         "title": "r - feelings 21"
     },
     "untitled_oc_art": {
-        "type": "image",
-        "file": "/assets/visual/Untitled1752_20250801092703.png",
+        "image": "/assets/visual/Untitled1752_20250801092703.png",
         "title": "sea shore - untitled oc art"
     },
     "video": {
         "type": "video",
         "cover": "/assets/visual/cover.png",
-        "file": "/assets/visual/video.mp4",
+        "video": "/assets/visual/video.mp4",
         "title": "video"
     }
 }
