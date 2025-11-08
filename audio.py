@@ -76,7 +76,10 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item, slug=slug) for item in items])
+    audio_items_html = '\n'.join([
+    render_audio_item(item, slug=slug)
+    for slug, item in items.items()
+    ])
     
     return f'''
 <!DOCTYPE html>
@@ -138,7 +141,7 @@ def render_html_page(items, slug=None, current=None):
 
 def main():
     data = read_json(DATA_JSON)
-    slug_map = {k: slugify(k) for k in data.keys()}
+    slug_map = {slugify(k): v for k, v in data.items()}
 
     clear_out_dir(OUT_DIR)
     make_dirs(OUT_DIR)
@@ -151,7 +154,7 @@ def main():
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    all_html = render_html_page(data, slug=None)
+    all_html = render_html_page(slug_map, slug=None)
 
     with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
