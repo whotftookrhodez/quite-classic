@@ -117,7 +117,8 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.audio-item .audio-cover').forEach(img => {
         img.addEventListener('click', function() {
-            const slug = this.closest('.audio-item').querySelector('.audio-text').textContent.toLowerCase().replace(/ /g,'-');
+            const title = this.closest('.audio-item').querySelector('.audio-text').textContent;
+            let slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
             window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
         });
     });
