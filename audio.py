@@ -1,12 +1,9 @@
-#!/usr/bin/env python3
-
 import json, os, pathlib, urllib.parse
 
-# CONFIG - adjust to your server paths
-ROOT = '/var/www/html'                      # web root
-DATA_JSON = os.path.join(ROOT, 'data', 'audio.json')  # path to your audio.json
-OUT_DIR = os.path.join(ROOT, 'audio')      # output directory for static pages
-SITE_BASE = 'https://quiteclassic.org'     # base URL
+ROOT = '/var/www/html'
+DATA_JSON = os.path.join(ROOT, 'data', 'audio.json')
+OUT_DIR = os.path.join(ROOT, 'audio')
+SITE_BASE = 'https://quiteclassic.org'
 
 def read_json(path):
     with open(path, 'r', encoding='utf-8') as f:
@@ -18,14 +15,38 @@ def slugify(s):
 def make_dirs(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
 
+def h(x):
+    return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
+
+def render_audio_item(item):
+    cover = item.get('cover', '')
+    title = item.get('title', '')
+    mp3 = item.get('mp3', '')
+    flac = item.get('flac', '')
+    return f'''
+<div class="media-item audio-item">
+    <img src="{h(cover)}" alt="cover.png" class="audio-cover">
+    <p class="audio-text">{h(title)}</p>
+    <audio controls controlsList="nodownload noplaybackrate">
+        <source src="{h(mp3)}" type="audio/mpeg">
+    </audio>
+    <a class="main__btn"
+       onclick="downloadAudio(
+           ['{h(flac)}'],
+           '{h(cover)}',
+           this.closest('.audio-item').querySelector('.audio-text').textContent
+       )">
+       download
+    </a>
+</div>
+'''
+
 def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
     audio_items_html = '\n'.join([render_audio_item(item) for item in items])
-
-    return f'''
-<!DOCTYPE html>
+    return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96">
@@ -69,56 +90,24 @@ def render_html_page(items, slug=None, current=None):
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="/app.js"></script>
 </body>
-</html>
-'''
-
-def h(x):
-    return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
-
-def render_audio_item(item):
-    cover = item.get('cover', '')
-    title = item.get('title', '')
-    mp3 = item.get('mp3', '')
-    flac = item.get('flac', '')
-
-    return f'''
-<div class="media-item audio-item">
-    <img src="{h(cover)}" alt="cover.png" class="audio-cover">
-    <p class="audio-text">{h(title)}</p>
-    <audio controls controlsList="nodownload noplaybackrate">
-        <source src="{h(mp3)}" type="audio/mpeg">
-    </audio>
-    <a class="main__btn"
-       onclick="downloadAudio(
-           ['{h(flac)}'],
-           '{h(cover)}',
-           this.closest('.audio-item').querySelector('.audio-text').textContent
-       )">
-       download
-    </a>
-</div>
-'''
+</html>'''
 
 def main():
     data = read_json(DATA_JSON)
     items = {slugify(k): v for k, v in data.items()}
-
     make_dirs(OUT_DIR)
 
+    # Generate individual pages
     for slug, item in items.items():
-        out_dir = os.path.join(OUT_DIR, slug)
-
-        make_dirs(out_dir)
-
         html = render_html_page([item], slug=slug, current=item)
-
-        with open(os.path.join(out_dir, 'index.html'), 'w', encoding='utf-8') as f:
+        out_file = os.path.join(OUT_DIR, f'{slug}.html')
+        with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    all_items_html = render_html_page(list(items.values()))
-
-    with open(os.path.join(OUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
-        f.write(all_items_html)
+    # Generate main /audio.html with all items
+    all_html = render_html_page(list(items.values()))
+    with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
+        f.write(all_html)
 
 if __name__ == '__main__':
     main()
