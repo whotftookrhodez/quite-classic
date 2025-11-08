@@ -115,28 +115,19 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('/audio.html')) {
-        const audioItems = document.querySelectorAll('.audio-item');
+    const audioItems = document.querySelectorAll('.audio-item');
 
-        audioItems.forEach(item => {
-            const cover = item.querySelector('.audio-cover');
-            const text = item.querySelector('.audio-text');
+    audioItems.forEach(item => {
+        const cover = item.querySelector('.audio-cover');
+        const text = item.querySelector('.audio-text');
 
-            const goToAudioPage = () => {
-                const title = item.querySelector('.audio-text').textContent;
-                const slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
-                window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
-            };
-
-            if (cover) {
-                cover.style.cursor = 'pointer';
-                cover.addEventListener('click', goToAudioPage);
-            }
-
-            if (text) {
-                text.style.cursor = 'pointer';
-                text.addEventListener('click', goToAudioPage);
-            }
-        });
-    }
+        const goToAudioPage = () => {
+            const title = item.querySelector('.audio-text').textContent;
+            const slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
+            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+        };
+        
+        cover.addEventListener('click', goToAudioPage);
+        text.addEventListener('click', goToAudioPage);
+    });
 });
