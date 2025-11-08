@@ -113,3 +113,12 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("error loading site info: ", error);
         });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.audio-item .audio-cover').forEach(img => {
+        img.addEventListener('click', function() {
+            const slug = this.closest('.audio-item').querySelector('.audio-text').textContent.toLowerCase().replace(/ /g,'-');
+            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+        });
+    });
+});
