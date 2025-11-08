@@ -51,10 +51,13 @@ def render_audio_item(item, slug=None):
         if flac:
             flac_files.append(h(flac))
     flac_list_str = ', '.join(f"'{f}'" for f in flac_files)
-    page_link = f"/audio/{slug}" if slug else "#"
+    if slug == 'untitled_techno_demo':
+        page_link = '/index.html'
+    else:
+        page_link = '/audio.html'
     return f'''
 <div class="media-item audio-item">
-    <a href="{page_link}">
+    <a href="{page_link}" class="no-highlight">
         <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
         <p class="audio-text clickable">{h(title)}</p>
     </a>
@@ -89,32 +92,21 @@ def render_html_page(items, slug=None, current=None):
     {'<meta property="og:description" content="on quiteclassic.org">' if current else ''}
     {'<meta property="og:image" content="' + SITE_BASE + og_image + '">' if current else ''}
     {'<meta property="og:url" content="' + og_url + '">' if current else ''}
+    <style>.no-highlight { user-select: none; }</style>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar__container">
             <a href="/" id="navbar__logo">quite classic</a>
             <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
             <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="/about.html" class="navbar__links">about</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/audio.html" class="navbar__links">* audio</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/visual.html" class="navbar__links">visual</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/other.html" class="navbar__links">other</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/upload.html" class="navbar__links">upload</a>
-                </li>
+                <li class="navbar__item"><a href="/about.html" class="navbar__links">about</a></li>
+                <li class="navbar__item"><a href="/audio.html" class="navbar__links">* audio</a></li>
+                <li class="navbar__item"><a href="/visual.html" class="navbar__links">visual</a></li>
+                <li class="navbar__item"><a href="/other.html" class="navbar__links">other</a></li>
+                <li class="navbar__item"><a href="/upload.html" class="navbar__links">upload</a></li>
             </ul>
         </div>
     </nav>
