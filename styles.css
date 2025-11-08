@@ -220,6 +220,7 @@
   font-weight: 700;
   z-index: 0;
   text-decoration: none;
+  user-select: none;
 }
 
 .main__btn:after {

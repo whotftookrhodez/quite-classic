@@ -71,6 +71,7 @@ def render_html_page(items, slug=None, current=None):
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
     audio_items_html = '\n'.join([render_audio_item(item) for item in items])
+    
     return f'''
 <!DOCTYPE html>
 <html lang="en">
@@ -95,14 +96,26 @@ def render_html_page(items, slug=None, current=None):
         <div class="navbar__container">
             <a href="/" id="navbar__logo">quite classic</a>
             <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
             <ul class="navbar__menu">
-                <li class="navbar__item"><a href="/about.html" class="navbar__links">about</a></li>
-                <li class="navbar__item"><a href="/audio.html" class="navbar__links">* audio</a></li>
-                <li class="navbar__item"><a href="/visual.html" class="navbar__links">visual</a></li>
-                <li class="navbar__item"><a href="/other.html" class="navbar__links">other</a></li>
-                <li class="navbar__item"><a href="/upload.html" class="navbar__links">upload</a></li>
+                <li class="navbar__item">
+                    <a href="/about.html" class="navbar__links">about</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/audio.html" class="navbar__links">* audio</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/visual.html" class="navbar__links">visual</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/other.html" class="navbar__links">other</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/upload.html" class="navbar__links">upload</a>
+                </li>
             </ul>
         </div>
     </nav>
