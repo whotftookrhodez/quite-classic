@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <audio controls controlsList="nodownload noplaybackrate">
         <source src="${item.mp3}" type="audio/mpeg">
       </audio>
-      <a href="#" class="main__btn"
+      <a class="main__btn"
          onclick="downloadAudio(['${item.flac}'],'${item.cover}','${item.title}')">
          download
       </a>
