@@ -80,7 +80,7 @@ def render_html_page(items, slug=None, current=None):
     <link rel="manifest" href="/site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{og_title + ' - quite classic' or 'quite classic'}</title>
+    <title>{(og_title + ' - quite classic') or 'quite classic'}</title>
     <link rel="stylesheet" href="/styles.css">
     {'<meta property="og:title" content="' + og_title + '">' if current else ''}
     {'<meta property="og:description" content="on quiteclassic.org">' if current else ''}
