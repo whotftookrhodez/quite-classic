@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, json, shutil, pathlib, urllib.parse
+import os, json, re, shutil, pathlib, urllib.parse
 
 SITE_BASE = 'https://quiteclassic.org'
 ROOT = '/var/www/html'
@@ -12,7 +12,10 @@ def read_json(path):
         return json.load(f)
 
 def slugify(s):
-    return s.strip().lower().replace(' ', '-')
+    s = s.lower()
+    s = re.sub(r'[^a-z0-9]', '_', s)
+    s = re.sub(r'_+', '_', s)
+    return s.strip('_')
 
 def clear_out_dir(folder):
     if os.path.exists(folder):
@@ -33,7 +36,7 @@ def make_dirs(p):
 def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
-def render_audio_item(item):
+def render_audio_item(item, slug=None):
     title = item.get('title', '')
     cover = item.get('cover', '')
     tracks = item.get('tracks', [])
@@ -53,11 +56,14 @@ def render_audio_item(item):
             flac_files.append(h(flac))
 
     flac_list_str = ', '.join(f"'{f}'" for f in flac_files)
-
+    page_link = f"/audio/{slug}" if slug else "#"
+    
     return f'''
 <div class="media-item audio-item">
-    <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
-    <p class="audio-text clickable">{h(title)}</p>
+    <a href="{page_link}">
+        <img src="{h(cover)}" alt="cover.png" class="audio-cover clickable">
+        <p class="audio-text clickable">{h(title)}</p>
+    </a>
     {audio_html}
     <a class="main__btn"
        onclick="downloadAudio([{flac_list_str}], '{h(cover)}', this.closest('.audio-item').querySelector('.audio-text').textContent)">
@@ -70,7 +76,7 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item) for item in items])
+    audio_items_html = '\n'.join([render_audio_item(item, slug=slug) for item in items])
     
     return f'''
 <!DOCTYPE html>
@@ -132,19 +138,20 @@ def render_html_page(items, slug=None, current=None):
 
 def main():
     data = read_json(DATA_JSON)
-    items = {slugify(k): v for k, v in data.items()}
+    slug_map = {k: slugify(k) for k in data.keys()}
 
     clear_out_dir(OUT_DIR)
     make_dirs(OUT_DIR)
 
-    for slug, item in items.items():
-        html = render_html_page([item], slug=slug, current=item)
+    for orig_key, item in data.items():
+        slug = slug_map[orig_key]
+        html = render_html_page({orig_key: item}, slug=slug, current=item)
         out_file = os.path.join(OUT_DIR, f'{slug}.html')
 
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    all_html = render_html_page(list(items.values()))
+    all_html = render_html_page(data, slug=None)
 
     with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
