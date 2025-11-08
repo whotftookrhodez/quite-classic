@@ -558,11 +558,11 @@ audio::-webkit-media-controls-volume-slider:hover {
   }
 }
 
-.audio-item .audio-cover {
+.audio-item .audio-cover .clickable {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.audio-item .audio-cover:hover {
-  transform: scale(1.1);
+.audio-item .audio-cover:hover .clickable {
+  transform: scale(1.05);
 }
