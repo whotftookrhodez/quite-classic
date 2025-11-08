@@ -1,20 +1,27 @@
 <?php
 $slug = $_GET['slug'] ?? '';
-$slugLower = strtolower(str_replace(' ', '-', trim($slug, '/')));
+$slug = trim($slug, '/');
+$slugLower = strtolower(str_replace(' ', '-', $slug));
+
 $audioJsonPath = __DIR__ . '/audio.json';
 $audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
 $audioData = json_decode($audioJson, true);
+
 $audioDataLower = array_change_key_case($audioData, CASE_LOWER);
 
 $current = $slugLower && isset($audioDataLower[$slugLower]) ? $audioDataLower[$slugLower] : null;
 
-function h($string) { return htmlspecialchars($string, ENT_QUOTES, 'UTF-8'); }
+$itemList = $current ? [$current] : $audioDataLower;
 
 $ogTitle = $current['title'] ?? 'quite classic';
 $ogImage = $current['cover'] ?? '';
-$ogUrl   = $slug ? "https://quiteclassic.org/audio/" . urlencode($slug) : 'https://quiteclassic.org/';
+$ogUrl   = $slug ? 'https://quiteclassic.org/audio/' . urlencode($slug) : 'https://quiteclassic.org/audio';
 $ogImageWidth = 800;
 $ogImageHeight = 800;
+
+function h($string) {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,15 +31,23 @@ $ogImageHeight = 800;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($ogTitle) ?> – quite classic</title>
     <link rel="stylesheet" href="/styles.css">
+
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="quite classic">
+
     <?php if ($current): ?>
-    <meta property="og:title" content="<?= h($ogTitle) ?>">
-    <meta property="og:image" content="https://quiteclassic.org<?= h($ogImage) ?>">
-    <meta property="og:image:width" content="<?= $ogImageWidth ?>">
-    <meta property="og:image:height" content="<?= $ogImageHeight ?>">
-    <meta property="og:description" content="on quiteclassic.org">
-    <meta property="og:url" content="<?= h($ogUrl) ?>">
-    <meta property="og:type" content="music.song">
-<?php endif; ?>
+        <meta property="og:title" content="<?= h($ogTitle) ?>">
+        <meta property="og:image" content="https://quiteclassic.org<?= h($ogImage) ?>">
+        <meta property="og:image:width" content="<?= $ogImageWidth ?>">
+        <meta property="og:image:height" content="<?= $ogImageHeight ?>">
+        <meta property="og:description" content="on quiteclassic.org">
+        <meta property="og:url" content="<?= h($ogUrl) ?>">
+        <meta property="og:type" content="music.song">
+    <?php endif; ?>
 </head>
 <body>
 <nav class="navbar">
@@ -55,19 +70,22 @@ $ogImageHeight = 800;
 
 <div class="main__container">
     <div class="main__content" id="dynamic-audio">
-        <?php foreach ($itemList as $audio): ?>
-        <div class="media-item audio-item">
-            <img src="<?= h($audio['cover']) ?>" alt="cover.png" class="audio-cover">
-            <p class="audio-text"><?= h($audio['title']) ?></p>
-            <audio controls controlsList="nodownload noplaybackrate">
-                <source src="<?= h($audio['mp3']) ?>" type="audio/mpeg">
-            </audio>
-            <a class="main__btn"
-               onclick="downloadAudio(['<?= h($audio['flac']) ?>'], '<?= h($audio['cover']) ?>', '<?= h($audio['title']) ?>'); return false;">
-               download
-            </a>
-        </div>
-        <?php endforeach; ?>
+        <?php if (empty($itemList)): ?>
+            <p>audio nil</p>
+        <?php else: ?>
+            <?php foreach ($itemList as $audio): ?>
+                <div class="media-item audio-item">
+                    <img src="<?= h($audio['cover']) ?>" alt="cover.png" class="audio-cover">
+                    <p class="audio-text"><?= h($audio['title']) ?></p>
+                    <audio controls controlsList="nodownload noplaybackrate">
+                        <source src="<?= h($audio['mp3']) ?>" type="audio/mpeg">
+                    </audio>
+                    <a href="<?= h($audio['flac']) ?>" class="main__btn" download="<?= h($audio['title']) ?>.flac">
+                        download
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>
 
