@@ -1,30 +1,19 @@
 <?php
 
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$slug = trim($path, '/');
-$slug = preg_replace('/\.html$/i', '', $slug);
-$slug = str_replace(' ', '-', $slug);
-$slugLower = strtolower($slug);
-$known_pages = ['about', 'audio', 'index', 'licenses', 'other', 'upload', 'visual'];
-
-if (in_array($slugLower, $known_pages)) {
-    $slugLower = '';
-}
-
+$slug = $_GET['slug'] ?? '';
+$slug = trim($slug, '/');
+$slugLower = strtolower(str_replace(' ', '-', $slug));
 $audioJsonPath = __DIR__ . '/audio.json';
 $audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
 $audioData = json_decode($audioJson, true);
 $audioDataLower = array_change_key_case($audioData, CASE_LOWER);
-$item = $audioDataLower[$slugLower] ?? null;
 
-if (!$item) {
-    $item = [
-        'cover' => ''
-        'title' => 'audio nil',
-        'mp3' => '',
-        'flac' => '',
-    ];
-}
+$item = $audioDataLower[$slugLower] ?? [
+    'cover' => '',
+    'title' => 'audio nil',
+    'mp3' => '',
+    'flac' => '',
+];
 
 function h($string) {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
@@ -82,7 +71,21 @@ function h($string) {
     <div class="main__container">
         <div class="main__content">
             <div id="dynamic-audio" class="main__content">
-                <p>loading</p>
+                <?php if ($item['title'] === 'audio nil'): ?>
+                    <p>audio nil</p>
+                <?php else: ?>
+                    <div class="media-item audio-item">
+                        <img src="<?= h($item['cover']) ?>" alt="cover.png" class="audio-cover">
+                        <p class="audio-text"><?= h($item['title']) ?></p>
+                        <audio controls controlsList="nodownload noplaybackrate">
+                            <source src="<?= h($item['mp3']) ?>" type="audio/mpeg">
+                        </audio>
+                        <a href="#" class="main__btn"
+                           onclick="downloadAudio(['<?= h($item['flac']) ?>'], '<?= h($item['cover']) ?>', '<?= h($item['title']) ?>')">
+                           download
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
