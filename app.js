@@ -113,3 +113,55 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("error loading site info: ", error);
         });
 });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const dynamicContainer = document.getElementById("dynamic-audio");
+
+  if (!dynamicContainer) return;
+
+  let audioData;
+  const params = new URLSearchParams(window.location.search);
+  let slug = params.get("slug");
+
+  if (!slug) {
+    const parts = window.location.pathname.split("/");
+    slug = parts[parts.length - 1] || parts[parts.length - 2];
+  }
+
+  slug = decodeURIComponent(slug.trim().toLowerCase());
+
+  try {
+    const res = await fetch("/data/audio.json");
+    audioData = await res.json();
+  } catch (error) {
+    dynamicContainer.innerHTML = `<p>error loading data</p>`;
+
+    console.error("audio.json error:", error);
+
+    return;
+  }
+
+  const item = audioData[slug];
+
+  if (!item) {
+    dynamicContainer.innerHTML = `<p>audio nil</p>`;
+
+    return;
+  }
+
+  dynamicContainer.innerHTML = `
+    <div class="media-item audio-item">
+      <img src="${item.cover}" alt="cover.png" class="audio-cover">
+      <p class="audio-text">${item.title}</p>
+      <audio controls controlsList="nodownload noplaybackrate">
+        <source src="${item.mp3}" type="audio/mpeg">
+      </audio>
+      <a href="#" class="main__btn"
+         onclick="downloadAudio(['${item.flac}'],'${item.cover}','${item.title}')">
+         download
+      </a>
+    </div>
+  `;
+
+  document.title = `${item.title} – quite classic`;
+});

@@ -1,3 +1,27 @@
+<?php
+
+$slug = $_GET['slug'] ?? '';
+
+$audioJsonPath = __DIR__ . '/audio.json';
+$audioJson = file_exists($audioJsonPath) ? file_get_contents($audioJsonPath) : '{}';
+$audioData = json_decode($audioJson, true);
+$item = $audioData[$slug] ?? null;
+
+if (!$item) {
+    $item = [
+        'cover' => ''
+        'title' => 'audio nil',
+        'mp3' => '',
+        'flac' => '',
+    ];
+}
+
+function h($string) {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +33,18 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quite classic</title>
+    <title><?= h($item['title']) ?> – quite classic</title>
     <link rel="stylesheet" href="styles.css">
+    <meta property="og:image" content="https://quiteclassic.org<?= h($item['cover']) ?>">
+    <meta property="og:title" content="<?= h($item['title']) ?>">
+    <meta property="og:description" content="on quiteclassic.org">
+    <meta property="og:url" content="https://quiteclassic.org/audio/<?= urlencode($slug) ?>">
+    <meta property="og:type" content="music.song">
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar__container">
-            <a href="/" id="navbar__logo">* quite secret</a>
+            <a href="/" id="navbar__logo">quite classic</a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -26,9 +55,9 @@
                     <a href="/about.html" class="navbar__links">about</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="/audio.html" class="navbar__links">audio</a>
+                    <a href="/audio.html" class="navbar__links">* audio</a>
                 </li>
-                 <li class="navbar__item">
+                <li class="navbar__item">
                     <a href="/visual.html" class="navbar__links">visual</a>
                 </li>
                 <li class="navbar__item">
@@ -42,16 +71,12 @@
     </nav>
     <div class="main__container">
         <div class="main__content">
-            <div class="media-item image-item">
-                <div class="media-left">
-                    <img src="assets/secret/Steamhappy bounce spin.gif" alt="assets/secret/Steamhappy bounce spin.gif" class="image/gif">
-                </div>
-                <div class="media-right">
-                    <p class="image-text only">he has been caged.</p>
-                </div>
+            <div id="dynamic-audio" class="main__content">
+                <p>loading</p>
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="/app.js" defer></script>
 </body>
 </html>
