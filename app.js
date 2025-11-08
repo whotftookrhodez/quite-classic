@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('/audio.html')) {
+    if (window.location.pathname.startsWith('/audio.html')) {
         document.querySelectorAll('.audio-item').forEach(item => {
             const cover = item.querySelector('.audio-cover');
             const text = item.querySelector('.audio-text');
