@@ -70,7 +70,7 @@ function h($string) {
     </nav>
     <div class="main__container">
         <div class="main__content">
-            <div id="dynamic-audio" class="main__content">
+            <div id="dynamic-audio">
                 <?php if ($item['title'] === 'audio nil'): ?>
                     <p>audio nil</p>
                 <?php else: ?>
