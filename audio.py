@@ -78,45 +78,16 @@ def render_html_page(items, slug=None, current=None):
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="shortcut icon" href="/assets/icons/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-title" content="quite classic">
-    <link rel="manifest" href="/site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{og_title + ' - quite classic' or 'quite classic'}</title>
     <link rel="stylesheet" href="/styles.css">
-    {'<meta property="og:title" content="' + og_title + '">' if current else ''}
-    {'<meta property="og:description" content="on quiteclassic.org">' if current else ''}
-    {'<meta property="og:image" content="' + SITE_BASE + og_image + '">' if current else ''}
-    {'<meta property="og:url" content="' + og_url + '">' if current else ''}
-    <style>.no-highlight { user-select: none; }</style>
+    <style>.no-highlight {{ user-select: none; }}</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="/" id="navbar__logo">quite classic</a>
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item"><a href="/about.html" class="navbar__links">about</a></li>
-                <li class="navbar__item"><a href="/audio.html" class="navbar__links">* audio</a></li>
-                <li class="navbar__item"><a href="/visual.html" class="navbar__links">visual</a></li>
-                <li class="navbar__item"><a href="/other.html" class="navbar__links">other</a></li>
-                <li class="navbar__item"><a href="/upload.html" class="navbar__links">upload</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="main__container">
-        <div class="main__content">
-            {audio_items_html}
-        </div>
+    <div class="main__content">
+        {audio_items_html}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="/app.js"></script>
 </body>
 </html>
 '''
@@ -124,15 +95,18 @@ def render_html_page(items, slug=None, current=None):
 def main():
     data = read_json(DATA_JSON)
     slug_map = {k: slugify(k) for k in data.keys()}
+
     clear_out_dir(OUT_DIR)
     make_dirs(OUT_DIR)
+
     for orig_key, item in data.items():
         slug = slug_map[orig_key]
         html = render_html_page([item], slug=slug, current=item)
         out_file = os.path.join(OUT_DIR, f'{slug}.html')
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
-    all_html = render_html_page(list(data.values()))
+
+    all_html = render_html_page(list(data.values()), slug=None)
     with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
 
