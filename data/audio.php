@@ -1,5 +1,4 @@
 <?php
-
 $slug = $_GET['slug'] ?? '';
 $slugLower = strtolower(str_replace(' ', '-', trim($slug, '/')));
 
@@ -9,34 +8,37 @@ $audioData = json_decode($audioJson, true);
 $audioDataLower = array_change_key_case($audioData, CASE_LOWER);
 
 $current = $slugLower && isset($audioDataLower[$slugLower]) ? $audioDataLower[$slugLower] : null;
-$itemList = $current ? [$current] : array_values($audioDataLower);
 
 function h($string) {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 
+// OG/fallback values
+$ogImage = $current['cover'] ?? '/assets/icons/favicon-96x96.png';
+$ogTitle = $current['title'] ?? 'quite classic';
+$ogUrl   = $current ? "https://quiteclassic.org/audio/" . urlencode($slug) : "https://quiteclassic.org/audio";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $current ? h($current['title']) . ' – quite classic' : 'quite classic' ?></title>
-    <link rel="stylesheet" href="/styles.css">
+    <title><?= h($ogTitle) ?> – quite classic</title>
+
     <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
     <link rel="shortcut icon" href="/assets/icons/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
     <meta name="apple-mobile-web-app-title" content="quite classic">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <?php if ($current): ?>
-        <meta property="og:image" content="https://quiteclassic.org<?= h($current['cover']) ?>">
-        <meta property="og:title" content="<?= h($current['title']) ?>">
-        <meta property="og:description" content="on quiteclassic.org">
-        <meta property="og:url" content="https://quiteclassic.org/audio/<?= urlencode($slug) ?>">
-        <meta property="og:type" content="music.song">
-    <?php endif; ?>
+    <link rel="stylesheet" href="/styles.css">
+
+    <meta property="og:image" content="https://quiteclassic.org<?= h($ogImage) ?>">
+    <meta property="og:title" content="<?= h($ogTitle) ?>">
+    <meta property="og:description" content="on quiteclassic.org">
+    <meta property="og:url" content="<?= h($ogUrl) ?>">
+    <meta property="og:type" content="music.song">
 </head>
 <body>
 <nav class="navbar">
