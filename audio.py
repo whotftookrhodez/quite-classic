@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, json, pathlib, urllib.parse
+import os, json, shutil, pathlib, urllib.parse
 
 SITE_BASE = 'https://quiteclassic.org'
 ROOT = '/var/www/html'
@@ -13,6 +13,19 @@ def read_json(path):
 
 def slugify(s):
     return s.strip().lower().replace(' ', '-')
+
+def clear_out_dir(folder):
+    if os.path.exists(folder):
+        for name in os.listdir(folder):
+            path = os.path.join(folder, name)
+
+            try:
+                if os.path.isfile(path) or os.path.islink(path):
+                    os.unlink(path)
+                elif os.path.isdir(path):
+                    shutil.rmtree(path)
+            except Exception as e:
+                print(f"clear error in {path}: {e}")
 
 def make_dirs(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
@@ -108,6 +121,7 @@ def main():
     data = read_json(DATA_JSON)
     items = {slugify(k): v for k, v in data.items()}
 
+    clear_out_dir(OUT_DIR)
     make_dirs(OUT_DIR)
 
     for slug, item in items.items():
@@ -119,7 +133,7 @@ def main():
 
     all_html = render_html_page(list(items.values()))
 
-    with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
 
 if __name__ == '__main__':
