@@ -557,3 +557,12 @@ audio::-webkit-media-controls-volume-slider:hover {
     max-height: 25vh;
   }
 }
+
+.audio-item .audio-cover {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.audio-item .audio-cover:hover {
+  transform: scale(1.1);
+}
