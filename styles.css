@@ -46,6 +46,7 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
+  user-select: none;
 }
 
 .navbar__menu {
@@ -67,6 +68,7 @@
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
+  user-select: none;
 }
 
 .navbar__links:hover {
@@ -183,18 +185,21 @@
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   margin-bottom: 2rem;
+  user-select: none;
 }
 
 .main__content h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #ffffff;
+  user-select: none;
 }
 
 .main__content h3 {
   font-size: 1.6rem;
   margin-bottom: 2rem;
   color: #808080;
+  user-select: none;
 }
 
 .main__content p {
@@ -202,6 +207,7 @@
   margin-bottom: 1.2rem;
   font-weight: 700;
   color: #ffffff;
+  user-select: none;
 }
 
 .main__btn {
@@ -316,6 +322,7 @@ html, body {
 a {
   color: #808080;
   text-decoration: underline;
+  user-select: none;
 }
 
 audio::-webkit-media-controls-panel {
@@ -402,8 +409,8 @@ audio::-webkit-media-controls-volume-slider:hover {
   margin-bottom: 1.2rem;
   font-weight: 700;
   color: #ffffff;
+  user-select: none;
 }
-
 
 .multiple {
   margin-top: 1.2rem;
@@ -432,7 +439,6 @@ audio::-webkit-media-controls-volume-slider:hover {
   overflow: hidden;
   margin: 2rem auto;
   padding: 1.2rem;
-  user-select: none;
 }
 
 .image-item .media-left img {
@@ -442,6 +448,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   max-height: 90vh;
   object-fit: contain;
   border-radius: 8px;
+  user-select: none;
 }
 
 .image-text {
@@ -482,10 +489,6 @@ audio::-webkit-media-controls-volume-slider:hover {
   overflow: hidden;
 }
 
-.video-cover {
-  user-select: none;
-}
-
 .video-cover,
 .video-player {
   height: auto;
@@ -494,6 +497,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   border-radius: 8px;
   min-width: 0;
   max-width: 100%;
+  user-select: none;
 }
 
 .video-cover {
