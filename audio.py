@@ -14,23 +14,14 @@ def read_json(path):
 def slugify(s):
     return s.strip().lower().replace(' ', '-')
 
-def slugify_title(title):
-    if '-' in title:
-        _, name = title.split('-', 1)
-    else:
-        name = title
-
-    return name.strip().lower().replace(' ', '-')
-
 def make_dirs(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
 
 def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
-def render_audio_item(item, slug):
-    slug = slugify_title(item.get('title', ''))
-    
+def render_audio_item(item):
+    slug = item.get('slug', '')
     title = item.get('title', '')
     cover = item.get('cover', '')
     tracks = item.get('tracks', [])
@@ -66,7 +57,7 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item, slug) for item in items])
+    audio_items_html = '\n'.join([render_audio_item(item) for item in items])
 
     return f'''
 <!DOCTYPE html>
