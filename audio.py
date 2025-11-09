@@ -21,7 +21,8 @@ def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
 def render_audio_item(item):
-    slug = item.get('slug', '')
+    slug = slugify(item.get('title', ''))
+    
     title = item.get('title', '')
     cover = item.get('cover', '')
     tracks = item.get('tracks', [])
