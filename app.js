@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth <= 960) return;
 
+  let nFrames = 0;
+  let clear = true;
   const canvas = document.getElementById("background");
   const containerMaxWidth = 1300;
   let cx, cy, scaleBase;
@@ -221,7 +223,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nFrames++;
+
+    if (nFrames == 720) {
+      clear = Math.random() > 0.1;
+      nFrames = 0;
+    }
+
+    if (clear) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.01)";
+      
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
     const projected = vertices.map(v => project(rotateVertex(v)));
 
@@ -255,8 +270,17 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.stroke();
     });
 
-    angleX += 0.009;
-    angleY += 0.018;
+    if (Math.random() < 0.2) {
+      angleX += Math.random() * .018;
+    } else {
+      angleX += 0.009;
+    }
+
+    if (Math.random() > 0.8) {
+      angleY += Math.random() * .018;
+    } else {
+      angleY += 0.009;
+    }
 
     requestAnimationFrame(draw);
   }
