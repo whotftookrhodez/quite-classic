@@ -155,14 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('resize', resize);
 
   const ctx = canvas.getContext("2d");
-
-  // funny.
-  
-  const texture = new Image();
-  texture.src = "";
-  let imgLoaded = false;
-  texture.onload = () => { imgLoaded = true; };
-
   const numVertices = Math.floor(Math.random() * 64) + 64;
   const vertices = [];
 
@@ -221,6 +213,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     faces.push(face);
   }
+
+  // funny.
+  
+  const texture = new Image();
+  texture.src = "";
+  let imgLoaded = false;
+  texture.onload = () => { imgLoaded = true; };
 
   function draw() {
     nFrames++;
