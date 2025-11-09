@@ -12,7 +12,7 @@ def read_json(path):
         return json.load(f)
 
 def slugify(s):
-    return s.strip().lower().replace(' ', '-')
+    return s.strip().lower().replace(' ', '-').replace('_', '-')
 
 def make_dirs(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
