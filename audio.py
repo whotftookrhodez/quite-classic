@@ -20,7 +20,7 @@ def make_dirs(p):
 def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
-def render_audio_item(item):
+def render_audio_item(item, slug):
     slug = slugify(item.get('title', ''))
     
     title = item.get('title', '')
@@ -58,7 +58,7 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item) for item in items])
+    audio_items_html = '\n'.join([render_audio_item(item, slug) for slug, item in items.items()])
 
     return f'''
 <!DOCTYPE html>

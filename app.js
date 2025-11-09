@@ -267,5 +267,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const slug = text.dataset.slug.replace(/_/g, '-');
+const slug = text.dataset.slug;
 window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
