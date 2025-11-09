@@ -122,19 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
-          const title = item.querySelector('.audio-text').textContent;
-          let slug;
-
-          if (title.includes('-')) {
-              slug = title.split('-', 2)[1];
-          } else {
-              slug = title;
-          }
-
-          slug = slug.trim().toLowerCase().replace(/ /g, '-');
-          window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+            const slug = text.dataset.slug;
+            
+            if (!slug) return;
+            
+            window.location.href = `/audio/${slug}.html`;
         };
-        
+
         cover.addEventListener('click', goToAudioPage);
         text.addEventListener('click', goToAudioPage);
     });
