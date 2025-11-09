@@ -268,7 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const goToAudioPage = () => {
-    const text = item.querySelector('.audio-text');
-    const slug = text.dataset.slug;
+    const slug = item.querySelector('.audio-text').dataset.slug;
     window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
 };
