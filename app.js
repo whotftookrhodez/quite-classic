@@ -122,11 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
-            const slug = text.dataset.slug;
+            let title = text.textContent.trim();
+            let slug;
             
-            if (!slug) return;
-            
-            window.location.href = `/audio/${slug}.html`;
+            if (title.includes('-')) {
+                slug = title.split('-', 2)[1];
+            } else {
+                slug = title;
+            }
+
+            slug = slug.trim().toLowerCase().replace(/ /g, '-');
+            window.location.href = `/audio/${slug}`;
         };
 
         cover.addEventListener('click', goToAudioPage);
