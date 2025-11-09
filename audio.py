@@ -79,7 +79,6 @@ def render_html_page(items, slug=None, current=None):
     {'<meta property="og:url" content="' + og_url + '">' if current else ''}
 </head>
 <body>
-    <canvas id="background"></canvas>
     <nav class="navbar">
         <div class="navbar__container">
             <a href="/" id="navbar__logo">quite classic</a>
