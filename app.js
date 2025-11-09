@@ -122,9 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
-            const title = item.querySelector('.audio-text').textContent;
-            const slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
-            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+          const title = item.querySelector('.audio-text').textContent;
+          let slug;
+
+          if (title.includes('-')) {
+              slug = title.split('-', 2)[1];
+          } else {
+              slug = title;
+          }
+
+          slug = slug.trim().toLowerCase().replace(/ /g, '-');
+          window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
         };
         
         cover.addEventListener('click', goToAudioPage);
@@ -262,37 +270,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   draw();
-});
-
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const audioItems = document.querySelectorAll('.audio-item');
-
-    audioItems.forEach(item => {
-        const cover = item.querySelector('.audio-cover');
-        const text = item.querySelector('.audio-text');
-
-        const goToAudioPage = () => {
-            const title = text.textContent;
-            let slug;
-
-            if (title.includes('-')) {
-                slug = title.split('-', 2)[1];
-            } else {
-                slug = title;
-            }
-
-            slug = slug.trim().toLowerCase().replace(/ /g, '-');
-
-            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
-        };
-
-        cover.addEventListener('click', goToAudioPage);
-        text.addEventListener('click', goToAudioPage);
-    });
 });
