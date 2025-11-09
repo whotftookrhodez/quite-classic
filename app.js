@@ -277,13 +277,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
 
-        const slug = text.dataset.slug;
-
         const goToAudioPage = () => {
-            if (!slug) return;
-            window.location.href = `/audio/${encodeURIComponent(slug)}.html`;
+            const slug = text.dataset.slug;
+            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
         };
-
+        
         cover.addEventListener('click', goToAudioPage);
         text.addEventListener('click', goToAudioPage);
     });
