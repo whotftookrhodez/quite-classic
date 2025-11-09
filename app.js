@@ -267,5 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const slug = text.dataset.slug;
-window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+const goToAudioPage = () => {
+    const text = item.querySelector('.audio-text');
+    const slug = text.dataset.slug;
+    window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+};
