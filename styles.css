@@ -47,6 +47,7 @@
   text-decoration: none;
   font-size: 2rem;
   user-select: none;
+  transform: translateY(-3px); /* for segoe ui */
 }
 
 .navbar__menu {
@@ -135,10 +136,12 @@
   }
 
   #mobile-menu {
+    /* close enough */
+
     position: absolute;
-    top: 20%;
-    right: 5%;
-    transform: translate(5%, 20%);
+    top: 25%;
+    right: 5.5%;
+    transform: translate(5.4166666667%, 25%); /* why? funny. */
   }
 
   .navbar__toggle .bar {
@@ -166,7 +169,7 @@
   justify-self: center;
   margin: 0 auto;
   height: 90vh;
-  background-color: #000000;
+  background-color: transparent;
   z-index: 1;
   width: 100%;
   max-width: 1300px;
@@ -588,4 +591,27 @@ audio::-webkit-media-controls-volume-slider:hover {
 
 .audio-text.clickable:hover {
   transform: scale(1.025);
+}
+
+@media screen and (min-width: 961px) {
+  body .main__container, .navbar {
+    position: relative;
+    z-index: 1;
+  }
+
+  #background {
+    z-index: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #background {
+    display: none;
+  }
 }

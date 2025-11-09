@@ -131,3 +131,135 @@ document.addEventListener('DOMContentLoaded', () => {
         text.addEventListener('click', goToAudioPage);
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth <= 960) return;
+
+  const canvas = document.getElementById("background");
+  const containerMaxWidth = 1300;
+  let cx, cy, scaleBase;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const containerWidth = Math.min(canvas.width, containerMaxWidth);
+    cx = canvas.width / 2 + containerWidth / 4;
+    cy = canvas.height / 2;
+    scaleBase = containerWidth * 0.24;
+  }
+
+  resize();
+
+  window.addEventListener('resize', resize);
+
+  const ctx = canvas.getContext("2d");
+
+  // funny.
+  
+  const texture = new Image();
+  texture.src = "";
+  let imgLoaded = false;
+  texture.onload = () => { imgLoaded = true; };
+
+  const numVertices = Math.floor(Math.random() * 64) + 64;
+  const vertices = [];
+
+  for (let i = 0; i < numVertices; i++) {
+    const factor = Math.random() * 0.8 + 0.4;
+    
+    vertices.push([
+      (Math.random() - 0.5) * 2 * factor,
+      (Math.random() - 0.5) * 2 * factor,
+      (Math.random() - 0.5) * 2 * factor
+    ]);
+  }
+
+  function project(v) {
+    const scale = scaleBase / (scaleBase + v[2] * 120 + 120);
+
+    return {
+      x: cx + v[0] * scaleBase * scale,
+      y: cy + v[1] * scaleBase * scale
+    };
+  }
+
+  let angleX = 0;
+  let angleY = 0;
+
+  function rotateVertex(v) {
+    let [x, y, z] = v;
+
+    const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+    let y1 = y * cosX - z * sinX;
+    let z1 = y * sinX + z * cosX;
+
+    y = y1; z = z1;
+
+    const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+    let x1 = x * cosY + z * sinY;
+    let z2 = -x * sinY + z * cosY;
+
+    x = x1; z = z2;
+
+    return [x, y, z];
+  }
+
+  const numFaces = Math.floor(Math.random() * 4) + 4;
+  const faces = [];
+
+  for (let i = 0; i < numFaces; i++) {
+    const face = [];
+    const faceSize = Math.floor(Math.random() * 4) + 4;
+
+    while (face.length < faceSize) {
+      const v = Math.floor(Math.random() * numVertices);
+
+      if (!face.includes(v)) face.push(v);
+    }
+
+    faces.push(face);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const projected = vertices.map(v => project(rotateVertex(v)));
+
+    faces.forEach(f => {
+      const pts = f.map(i => projected[i]);
+
+      ctx.beginPath();
+
+      ctx.moveTo(pts[0].x, pts[0].y);
+
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+
+      ctx.closePath();
+
+      if (imgLoaded) {
+        const minX = Math.min(...pts.map(p => p.x));
+        const minY = Math.min(...pts.map(p => p.y));
+        const maxX = Math.max(...pts.map(p => p.x));
+        const maxY = Math.max(...pts.map(p => p.y));
+
+        ctx.drawImage(texture, minX, minY, maxX - minX, maxY - minY);
+      } else {
+        ctx.fillStyle = "gray";
+
+        ctx.fill();
+      }
+
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = 1;
+
+      ctx.stroke();
+    });
+
+    angleX += 0.009;
+    angleY += 0.018;
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+});
