@@ -263,3 +263,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   draw();
 });
+
+
+
+
+const slug = text.dataset.slug;
+window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';

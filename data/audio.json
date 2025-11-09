@@ -1,6 +1,5 @@
 {
   "this_project_does_not_exist": {
-    "slug": "this_project_does_not_exist",
     "title": "AfterTrasen - This_project_does_not_exist",
     "cover": "/assets/audio/download/This_project_does_not_exist cover.png",
     "tracks": [
@@ -11,8 +10,7 @@
     ]
   },
   "night_drive_in_da_celica": {
-    "slug": "night_drive_in_da_celica",
-    "title": "AfterTrasen - night_drive_in_da_celica",
+    "title": "AfterTrasen - Night_drive_in_da_celica",
     "cover": "/assets/audio/download/Night_drive_in_da_celica cover.png",
     "tracks": [
       {
@@ -22,7 +20,6 @@
     ]
   },
   "assembling-machine-t3-1": {
-    "slug": "assembling_machine_t3_1",
     "title": "AfterTrasen - assembling-machine-t3-1",
     "cover": "/assets/audio/download/assembling-machine-t3-1 cover.png",
     "tracks": [
@@ -33,7 +30,6 @@
     ]
   },
   "untitled-techno-demo": {
-    "slug": "untitled_techno_demo",
     "title": "AfterTrasen - Untitled Techno Demo",
     "cover": "/assets/audio/download/Untitled Techno Demo cover.png",
     "tracks": [
