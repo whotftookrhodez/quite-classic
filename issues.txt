@@ -1,1 +1,1 @@
-hyphens redir to /audio or /index, weird scaling on audio players
+assembling machine redirs to /audio, weird scaling on audio players, abhorrent mess in app.js, audio.py and visual.py
