@@ -11,8 +11,13 @@ def read_json(path):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def slugify(s):
-    return s.strip().lower().replace(' ', '-')
+def slugify(title_or_key):
+    if '-' in title_or_key:
+        _, name = title_or_key.split('-', 1)
+    else:
+        name = title_or_key
+
+    return name.strip().lower().replace(' ', '-')
 
 def make_dirs(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
