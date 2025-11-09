@@ -267,7 +267,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const goToAudioPage = () => {
-    const slug = item.querySelector('.audio-text').dataset.slug;
-    window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const audioItems = document.querySelectorAll('.audio-item');
+
+    audioItems.forEach(item => {
+        const cover = item.querySelector('.audio-cover');
+        const text = item.querySelector('.audio-text');
+
+        const goToAudioPage = () => {
+            const slug = text.dataset.slug;
+            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+        };
+        
+        cover.addEventListener('click', goToAudioPage);
+        text.addEventListener('click', goToAudioPage);
+    });
+});
