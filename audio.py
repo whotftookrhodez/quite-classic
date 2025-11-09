@@ -58,7 +58,7 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item, slug) for slug, item in items.items()])
+    audio_items_html = '\n'.join([render_audio_item(item, slug) for item in items])
 
     return f'''
 <!DOCTYPE html>
