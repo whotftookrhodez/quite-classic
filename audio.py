@@ -11,11 +11,14 @@ def read_json(path):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def slugify(title_or_key):
-    if '-' in title_or_key:
-        _, name = title_or_key.split('-', 1)
+def slugify(s):
+    return s.strip().lower().replace(' ', '-')
+
+def slugify_title(title):
+    if '-' in title:
+        _, name = title.split('-', 1)
     else:
-        name = title_or_key
+        name = title
 
     return name.strip().lower().replace(' ', '-')
 
@@ -26,7 +29,7 @@ def h(x):
     return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
 
 def render_audio_item(item, slug):
-    slug = slugify(item.get('title', ''))
+    slug = slugify_title(item.get('title', ''))
     
     title = item.get('title', '')
     cover = item.get('cover', '')
