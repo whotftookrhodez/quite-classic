@@ -117,6 +117,7 @@ def render_html_page(items, slug=None, current=None):
 '''
 
 def main():
+    slug = item.get('slug', '')
     data = read_json(DATA_JSON)
     items = {slugify(k): v for k, v in data.items()}
 
