@@ -615,3 +615,62 @@ audio::-webkit-media-controls-volume-slider:hover {
     display: none;
   }
 }
+
+body.dark-mode {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark-mode .navbar {
+  background-color: #000000;
+}
+
+body.dark-mode .navbar__links {
+  color: #ffffff;
+}
+
+body.light-mode .navbar {
+  background-color: #ffffff;
+}
+
+body.light-mode .navbar__links {
+  color: #000000;
+}
+
+body.dark-mode .main__content h1 {
+  background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+}
+
+body.dark-mode .main__content h2,
+body.dark-mode .main__content p {
+  color: #ffffff;
+}
+
+body.light-mode .main__content h2,
+body.light-mode .main__content p {
+  color: #000000;
+}
+
+body.light-mode .main__content h1 {
+  background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
+}
+
+#mode-toggle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media screen and (max-width: 960px) {
+  #mode-toggle {
+    display: none;
+  }
+}

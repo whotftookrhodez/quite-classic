@@ -299,3 +299,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   draw();
 });
+
+function updateToggleText(mode) {
+    toggleBtn.innerText = mode === 'dark' ? 'switch to light mode' : 'switch to dark mode';
+    toggleBtn.style.color = mode === 'dark' ? '#ffffff' : '#000000';
+}
+
+const toggleBtn = document.createElement('button');
+
+toggleBtn.id = 'mode-toggle';
+
+const navbarContainer = document.querySelector('.navbar__container');
+
+navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
+
+const savedMode = localStorage.getItem('mode') || 'dark';
+
+document.body.classList.add(savedMode + '-mode');
+
+updateToggleText(savedMode);
+
+toggleBtn.addEventListener('click', () => {
+    const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const newMode = currentMode === 'dark' ? 'light' : 'dark';
+
+    document.body.classList.remove(currentMode + '-mode');
+    document.body.classList.add(newMode + '-mode');
+    localStorage.setItem('mode', newMode);
+
+    updateToggleText(newMode);
+});
