@@ -10,6 +10,12 @@ data = {
     "untitled_oc_art": {
         "image": "",
         "title": "sea shore - untitled oc art"
+    },
+    "title": {
+        "type": "video",
+        "cover": "/assets/visual/cover.png",
+        "video": "/assets/visual/video.mp4",
+        "title": "artist - title"
     }
 }
 

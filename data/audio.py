@@ -41,6 +41,6 @@ data = {
     }
 }
 
-for _, item in data.items():
+for key, item in data.items():
     prefix = item["title"].split(" - ", 1)[1]
     item["cover"] = f"/assets/audio/download/{prefix} cover.png"
