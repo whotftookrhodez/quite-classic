@@ -111,37 +111,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    const audioItems = document.querySelectorAll('.audio-item');
-
-    audioItems.forEach(item => {
+    document.querySelectorAll('.audio-item').forEach(item => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
-            const title = item.querySelector('.audio-text').textContent;
-            const slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
-            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+            const slug = text.getAttribute('data-slug');
+            
+            window.location.href = `/audio/${encodeURIComponent(slug)}.html`;
         };
         
         cover.addEventListener('click', goToAudioPage);
         text.addEventListener('click', goToAudioPage);
     });
 });
-
-
-
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth <= 960) return;
