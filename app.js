@@ -34,7 +34,9 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 }
 
 document.querySelectorAll('.image-item .main__btn').forEach(btn => {
-    btn.addEventListener('click', _ => {
+    btn.addEventListener('click', e => {
+        e.preventDefault()
+
         const a = document.createElement('a');
         const fileUrl = btn.getAttribute('href');
         const imageTitle = btn.closest('.media-item').querySelector('.image-text').textContent.trim();
