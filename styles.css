@@ -47,7 +47,7 @@
   text-decoration: none;
   font-size: 2rem;
   user-select: none;
-  transform: translateY(-3px); /* for segoe ui */
+  transform: translateY(-1px); /* for segoe ui */
 }
 
 .navbar__menu {
@@ -662,11 +662,15 @@ body.light-mode .main__content h1 {
 
 #mode-toggle {
   font-size: 1.2rem;
-  font-weight: 700;
   background: transparent;
   border: none;
   cursor: pointer;
   user-select: none;
+}
+
+#mode-toggle:hover {
+  color: #808080;
+  transition: all 0.3s ease;
 }
 
 /* add mobile support or an auto-revert to dark mode */
