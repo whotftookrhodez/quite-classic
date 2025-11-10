@@ -118,12 +118,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.audio-item').forEach(item => {
+    const audioItems = document.querySelectorAll('.audio-item');
+
+    audioItems.forEach(item => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
-            const slug = text.getAttribute('data-slug');
+            const title = item.querySelector('.audio-text').textContent;
+            const slug = title.split('-').pop().trim().toLowerCase().replace(/ /g, '-');
             window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
         };
         
@@ -131,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
         text.addEventListener('click', goToAudioPage);
     });
 });
-
 
 
 
