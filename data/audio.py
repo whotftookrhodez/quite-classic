@@ -29,7 +29,7 @@ data = {
             }
         ]
     },
-    "untitled_techno_demo": {
+    "untitled-techno-demo": {
         "title": "AfterTrasen - Untitled Techno Demo",
         "cover": "",
         "tracks": [
