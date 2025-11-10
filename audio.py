@@ -2,7 +2,7 @@
 
 import os, json, pathlib, urllib.parse
 
-SITE_BASE = 'https://quiteclassic.org'
+DOMAIN = 'https://quiteclassic.org'
 ROOT = '/var/www/html'
 DATA_JSON = os.path.join(ROOT, 'data', 'audio.json')
 OUT_DIR = os.path.join(ROOT, 'audio')
@@ -56,7 +56,7 @@ def render_audio_item(item):
 def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
-    og_url = f"{SITE_BASE}/audio/{urllib.parse.quote(slug)}" if slug else ''
+    og_url = f"{DOMAIN}/audio/{urllib.parse.quote(slug)}" if slug else ''
     audio_items_html = '\n'.join([render_audio_item(item) for item in items])
 
     return f'''
@@ -75,7 +75,7 @@ def render_html_page(items, slug=None, current=None):
     <link rel="stylesheet" href="/styles.css">
     {'<meta property="og:title" content="' + og_title + '">' if current else ''}
     {'<meta property="og:description" content="on quiteclassic.org">' if current else ''}
-    {'<meta property="og:image" content="' + SITE_BASE + og_image + '">' if current else ''}
+    {'<meta property="og:image" content="' + DOMAIN + og_image + '">' if current else ''}
     {'<meta property="og:url" content="' + og_url + '">' if current else ''}
 </head>
 <body>

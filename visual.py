@@ -26,7 +26,7 @@ def render_image_item(item):
     </div>
     <div class="media-right">
         <p class="image-text">{h(title)}</p>
-        <a href="{url(image)}" download class="main__btn">download</a>
+        <a href="{url(image)}" class="main__btn">download</a>
     </div>
 </div>
 '''

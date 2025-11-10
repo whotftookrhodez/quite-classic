@@ -4,7 +4,7 @@ const menuLinks = document.querySelector('.navbar__menu');
 menu.addEventListener('click', function() {
     menu.classList.toggle('is-active');
     menuLinks.classList.toggle('active');
-})
+});
 
 function getFileNameFromUrl(url) {
     return decodeURIComponent(url.split('/').pop().split('?')[0]);
@@ -22,9 +22,9 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 
     const coverData = await fetch(coverUrl).then(r => r.blob());
 
-    zip.file("cover.png", coverData);
+    zip.file('cover.png', coverData);
 
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     const content = await zip.generateAsync({ type: "blob" });
 
     a.href = URL.createObjectURL(content);
@@ -34,13 +34,10 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 }
 
 document.querySelectorAll('.image-item .main__btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-        e.preventDefault();
-
+    btn.addEventListener('click', _ => {
         const a = document.createElement('a');
         const fileUrl = btn.getAttribute('href');
-        const container = btn.closest('.media-item');
-        const imageTitle = container.querySelector('.image-text').textContent.trim();
+        const imageTitle = btn.closest('.media-item').querySelector('.image-text').textContent.trim();
 
         a.href = fileUrl;
         a.download = imageTitle + fileUrl.substring(fileUrl.lastIndexOf('.'));
@@ -52,16 +49,16 @@ document.querySelectorAll('.image-item .main__btn').forEach(btn => {
 async function downloadVisual(visualUrl, coverUrl, btn) {
     const zip = new JSZip();
 
+    const fileName = getFileNameFromUrl(visualUrl);
     const visualData = await fetch(visualUrl).then(r => r.blob());
     const coverData = await fetch(coverUrl).then(r => r.blob());
 
-    zip.file(getFileNameFromUrl(visualUrl), visualData);
+    zip.file(fileName, visualData);
     zip.file("cover.png", coverData);
 
     const a = document.createElement("a");
     const content = await zip.generateAsync({ type: "blob" });
-    const container = btn.closest('.media-item');
-    const videoTitle = container.querySelector('.video-text').textContent.trim();
+    const videoTitle = btn.closest('.media-item').querySelector('.video-text').textContent.trim();
 
     a.href = URL.createObjectURL(content);
     a.download = `${videoTitle}.zip`;
@@ -76,10 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     fetch(`info.json?cb=${Date.now()}`)
         .then(response => response.json())
-
         .then(data => {
-            const title = `site info:`;
-
+            const title = 'site info:';
             const diskInfo = 
                 `<br>used storage - ${data.used_gb} gb / ${data.total_gb} gb<br>` +
                 `last updated - ${new Date(data.last_updated).toLocaleString().toLowerCase()}`;
@@ -114,6 +109,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const audioItems = document.querySelectorAll('.audio-item');
 
@@ -132,21 +133,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth <= 960) return;
 
-  let nFrames = 0;
-  let clear = true;
   const canvas = document.getElementById("background");
   const containerMaxWidth = 1300;
+  const navbarHeight = 80;
+  const normX = 0.75;
+  const normY = 0.5;
   let cx, cy, scaleBase;
 
   function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
     const containerWidth = Math.min(canvas.width, containerMaxWidth);
-    cx = canvas.width / 2 + containerWidth / 4;
-    cy = canvas.height / 2;
+    const containerHeight = canvas.height - navbarHeight;
+    const containerLeft = (canvas.width - containerWidth) / 2;
+    const containerTop = navbarHeight;
+
+    cx = containerWidth * normX + containerLeft;
+    cy = containerHeight * normY + containerTop;
     scaleBase = containerWidth * 0.24;
   }
 
@@ -154,6 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener('resize', resize);
 
+  let framesPassed = 0;
+  let clear = true;
   const ctx = canvas.getContext("2d");
   const numVertices = Math.floor(Math.random() * 64) + 64;
   const vertices = [];
@@ -222,11 +239,11 @@ document.addEventListener("DOMContentLoaded", () => {
   texture.onload = () => { imgLoaded = true; };
 
   function draw() {
-    nFrames++;
+    framesPassed++;
 
-    if (nFrames == 720) {
+    if (framesPassed == 720) {
       clear = Math.random() > 0.1;
-      nFrames = 0;
+      framesPassed = 0;
     }
 
     if (clear) {
@@ -268,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ctx.stroke();
     });
-
+    
     if (Math.random() < 0.2) {
       angleX += Math.random() * .018;
     } else {

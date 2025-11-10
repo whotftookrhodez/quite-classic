@@ -1,1 +1,1 @@
-assembling machine redirs to /audio, weird scaling on audio players, abhorrent mess in app.js, audio.py and visual.py (.htaccess is coming to devour me whole)
+assembling machine redirs to /audio, weird scaling on audio players, abhorrent mess in app.js, audio.py and visual.py (.htaccess is coming to devour me whole), bg isn't taking top into consideration?

@@ -1,7 +1,7 @@
 ,
-    "video": {
+    "title": {
         "type": "video",
         "cover": "/assets/visual/cover.png",
         "video": "/assets/visual/video.mp4",
-        "title": "video"
+        "title": "artist - title"
     }
