@@ -669,6 +669,8 @@ body.light-mode .main__content h1 {
   user-select: none;
 }
 
+/* add an auto-revert to dark mode or mobile support */
+
 @media screen and (max-width: 960px) {
   #mode-toggle {
     display: none;
