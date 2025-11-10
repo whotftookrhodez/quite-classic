@@ -111,28 +111,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-
-
 function slugify(s) {
     s = s.trim().toLowerCase();
     s = s.replace(/[^a-z0-9_-]+/g, '_');
     s = s.replace(/_+/g, '_');
     s = s.replace(/^_+|_+$/g, '');
+
     return s;
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    const audioItems = document.querySelectorAll('.audio-item');
-
-    audioItems.forEach(item => {
+    document.querySelectorAll('.audio-item').forEach(item => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
 
         const goToAudioPage = () => {
             const title = text.textContent.split(' - ')[1];
             const slug = slugify(title);
+
             window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
         };
         
@@ -140,15 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         text.addEventListener('click', goToAudioPage);
     });
 });
-
-
-
-
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth <= 960) return;
