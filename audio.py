@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+from data import audio
 import os, re, pathlib, html, urllib.parse
 
 DOMAIN = 'https://quiteclassic.org'
 ROOT = '/var/www/html'
-DATA = os.path.join(ROOT, 'data', 'audio.py')
 OUT_DIR = os.path.join(ROOT, 'audio')
 
 def slugify(s):
@@ -118,7 +118,7 @@ def render_html_page(items, slug=None, current=None):
 '''
 
 def main():
-    items = {slugify(k): v for k, v in DATA.items()}
+    items = {slugify(k): v for k, v in audio.data.items()}
 
     make_dirs(OUT_DIR)
 
