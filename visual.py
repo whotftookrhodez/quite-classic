@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import os, json, urllib.parse
+from data import visual
+import os, json, urllib.parse, html
 
 ROOT = '/var/www/html'
-DATA_JSON = os.path.join(ROOT, 'data', 'visual.json')
 
 def read_json(path):
     with open(path, 'r', encoding='utf-8') as f:
@@ -13,7 +13,7 @@ def url(x):
     return urllib.parse.quote(x, safe="/")
 
 def h(x):
-    return (x or '').replace('&', '&amp;').replace('<', '&lt;').replace('"', '&quot;')
+    return html.escape(x or '', quote=True)
 
 def render_image_item(item):
     image = item.get('image', '')
@@ -53,7 +53,7 @@ def render_video_item(item):
 '''
 
 def render_visual_item(item):
-    if isinstance(item, dict) and item.get('type') == 'video':
+    if item.get('type') == 'video':
         return render_video_item(item)
     return render_image_item(item)
 
@@ -115,8 +115,7 @@ def render_html_page(items):
 '''
 
 def main():
-    data = read_json(DATA_JSON)
-    items = [v for _, v in data.items()]
+    items = list(visual.data.values())
     html = render_html_page(items)
 
     with open(os.path.join(ROOT, 'visual.html'), 'w', encoding='utf-8') as f:

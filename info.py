@@ -5,7 +5,7 @@ import datetime
 import subprocess
 import json
 
-total, used, free = shutil.disk_usage("/")
+total, used, free = shutil.disk_usage('/')
 last_updated = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
 try:
@@ -15,11 +15,11 @@ except Exception:
     boot_time = last_updated
 
 data = {
-    "used_gb": round(used / (1024**3), 2),
-    "total_gb": round(total / (1024**3), 2),
+    "used_gb": round(used / (1024 ** 3), 2),
+    "total_gb": round(total / (1024 ** 3), 2),
     "last_updated": last_updated,
     "boot_time": boot_time,
-    "free_gb": round(free / (1024**3), 2)
+    "free_gb": round(free / (1024 ** 3), 2)
 }
 
 output_path = "/var/www/html/info.json"
