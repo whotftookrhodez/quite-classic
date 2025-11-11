@@ -214,7 +214,7 @@ function slugify(s) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!window.location.pathname.endsWith("/audio.html")) {
+    if (!window.location.pathname.endsWith("/audio")) {
         return;
     }
     
