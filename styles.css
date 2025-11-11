@@ -595,7 +595,7 @@ body.embed-page .audio-item {
 }
 
 body.embed-page .audio-cover.clickable:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 body.embed-page .audio-text.clickable:hover {
