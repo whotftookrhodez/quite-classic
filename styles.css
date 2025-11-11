@@ -584,6 +584,11 @@ audio::-webkit-media-controls-volume-slider:hover {
   transform: scale(1.025);
 }
 
+body.embed-page .audio-cover.clickable,
+body.embed-page .audio-text.clickable {
+  cursor: default !important;
+}
+
 @media screen and (min-width: 961px) {
   body .main__container, .navbar {
     position: relative;

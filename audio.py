@@ -78,7 +78,7 @@ def render_html_page(items, slug=None, current=None):
     {'<meta property="og:image" content="' + DOMAIN + og_image + '">' if current else ''}
     {'<meta property="og:url" content="' + og_url + '">' if current else ''}
 </head>
-<body>
+<body class="{'embed-page' if current else 'audio-list-page'}">
     <nav class="navbar">
         <div class="navbar__container">
             <a href="/" id="navbar__logo">quite classic</a>
