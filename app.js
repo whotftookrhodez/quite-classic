@@ -22,7 +22,7 @@ function getText() {
 function typeText(text) {
     clearTimeout(typingTimeout);
 
-    toggleBtn.textContent = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    toggleBtn.textContent = "";
 
     let i = 0;
 
