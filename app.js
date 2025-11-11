@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const title = 'site info:';
             const diskInfo = 
                 `<br>used storage - ${data.used_gb} gb / ${data.total_gb} gb<br>` +
-                `last updated - ${new Date(data.last_updated).toLocaleString().toLowerCase()}`;
+                `last updated - ${new Date(data.last_updated).toLocaleString().toLowerCase()}: ${data.last_commit_message}`;
 
             infoElement.innerHTML = title + diskInfo;
 

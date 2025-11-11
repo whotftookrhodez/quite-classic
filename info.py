@@ -24,7 +24,8 @@ except FileNotFoundError:
 data = {
     "used_gb": round(used / (1024 ** 3), 2),
     "total_gb": round(total / (1024 ** 3), 2),
-    "last_updated": f"{boot_time}: {last_commit_message}",
+    "last_updated": last_updated,
+    "last_commit_message": last_commit_message,
     "boot_time": boot_time,
     "free_gb": round(free / (1024 ** 3), 2)
 }
