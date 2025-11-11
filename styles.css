@@ -589,6 +589,11 @@ body.embed-page .audio-text.clickable {
   cursor: default !important;
 }
 
+body.embed-page .audio-item {
+  position: relative;
+  overflow: visible !important;
+}
+
 body.embed-page .audio-cover.clickable:hover {
   transform: scale(1.5);
 }
