@@ -161,7 +161,7 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
     a.click();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     const infoElement = document.getElementById("info");
 
     if (!infoElement) return;
@@ -214,6 +214,10 @@ function slugify(s) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (!window.location.pathname.endsWith("/audio.html")) {
+        return;
+    }
+    
     document.querySelectorAll('.audio-item').forEach(item => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
