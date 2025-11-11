@@ -642,6 +642,10 @@ body.dark-mode video {
 }
 
 @media screen and (max-width: 960px) {
+  #mode-toggle {
+    transform: translateY(-0.05em); /* for segoe ui */
+  }
+
   #navbar__logo {
     order: 0;
   }
