@@ -18,7 +18,7 @@ async function flushCache() {
             const _c = confirm("AAAAAAAAAAAAAAAAAA");
             if (_c) {
                 localStorage.setItem('last_updated', data.last_updated);
-                window.location.reload(true);
+                window.location.href = `${window.location.pathname}?v=${Date.now()}`;
             }
 
             /*
