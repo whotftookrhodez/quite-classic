@@ -24,7 +24,7 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 
     zip.file('cover.png', coverData);
 
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     const content = await zip.generateAsync({ type: "blob" });
 
     a.href = URL.createObjectURL(content);
@@ -37,7 +37,7 @@ document.querySelectorAll('.image-item .main__btn').forEach(btn => {
     btn.addEventListener('click', e => {
         e.preventDefault();
 
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         const fileUrl = btn.getAttribute('href');
         const imageTitle = btn.closest('.media-item').querySelector('.image-text').textContent.trim();
 
@@ -56,7 +56,7 @@ async function downloadVisual(visualUrl, coverUrl, btn) {
     const coverData = await fetch(coverUrl).then(r => r.blob());
 
     zip.file(fileName, visualData);
-    zip.file("cover.png", coverData);
+    zip.file('cover.png', coverData);
 
     const a = document.createElement("a");
     const content = await zip.generateAsync({ type: "blob" });
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = text.textContent.split(' - ')[1];
             const slug = slugify(title);
 
-            window.location.href = '/audio/' + encodeURIComponent(slug) + '.html';
+            window.location.href = "/audio/" + encodeURIComponent(slug) + ".html";
         };
         
         cover.addEventListener('click', goToAudioPage);

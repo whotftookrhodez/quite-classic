@@ -53,7 +53,7 @@ def render_video_item(item):
 '''
 
 def render_visual_item(item):
-    if item.get('type') == 'video':
+    if item.get("type") == "video":
         return render_video_item(item)
     return render_image_item(item)
 

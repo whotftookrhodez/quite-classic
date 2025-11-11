@@ -14,7 +14,7 @@ data = {
 }
 
 for _, item in data.items():
-    prefix = item["title"].split(" - ", 1)[1]
+    prefix = item["title"].split(' - ', 1)[1]
 
     if item.get("type") == "video":
         item["cover"] = f"/assets/visual/{prefix} cover.png"
