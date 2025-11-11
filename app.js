@@ -398,3 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw();
 });
+
+console.log("funny");
+console.error("funny 2");
