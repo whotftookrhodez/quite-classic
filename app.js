@@ -14,6 +14,7 @@ async function flushCache() {
 
                 await Promise.all(cacheNames.map(c => caches.delete(c)));
             }
+            /**/
             
             localStorage.setItem('last_updated', data.last_updated);
             window.location.reload(true);
