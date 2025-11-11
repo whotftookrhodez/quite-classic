@@ -15,14 +15,6 @@ async function flushCache() {
                 await Promise.all(cacheNames.map(c => caches.delete(c)));
             }
 
-            if ('serviceWorker' in navigator) {
-              const regs = await navigator.serviceWorker.getRegistrations();
-
-              for (const reg of regs) {
-                await reg.unregister();
-              }
-            }
-
             const _c = confirm("AAAAAAAAAAAAAAAAAA");
             if (_c) {
                 localStorage.setItem('last_updated', data.last_updated);
