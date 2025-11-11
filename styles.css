@@ -332,7 +332,7 @@ a {
 }
 
 audio::-webkit-media-controls-panel {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 /* lmao. */
@@ -348,7 +348,7 @@ audio::-webkit-media-controls-mute-button,
 audio::-webkit-media-controls-mute-button:hover,
 audio::-webkit-media-controls-volume-slider,
 audio::-webkit-media-controls-volume-slider:hover {
-  filter: grayscale(100%) invert() contrast(1000%);
+  filter: grayscale(100%) contrast(1000%);
 }
 
 /**/
