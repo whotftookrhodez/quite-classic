@@ -120,7 +120,7 @@ function slugify(s) {
     return s;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.audio-item').forEach(item => {
         const cover = item.querySelector('.audio-cover');
         const text = item.querySelector('.audio-text');
@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
         text.addEventListener('click', goToAudioPage);
     });
 });
+
+let outlineColor = "#000000";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth <= 960) return;
@@ -276,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fill();
       }
 
-      ctx.strokeStyle = "#000000";
+      ctx.strokeStyle = outlineColor;
       ctx.lineWidth = 1;
 
       ctx.stroke();
@@ -300,32 +302,67 @@ document.addEventListener("DOMContentLoaded", () => {
   draw();
 });
 
-function updateToggleText(mode) {
-    toggleBtn.innerText = mode === 'dark' ? 'switch to light mode' : 'switch to dark mode';
-    toggleBtn.style.color = mode === 'dark' ? '#ffffff' : '#000000';
-}
-
-const toggleBtn = document.createElement('button');
-
-toggleBtn.id = 'mode-toggle';
-
-const navbarContainer = document.querySelector('.navbar__container');
-
-navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
-
 const savedMode = localStorage.getItem('mode') || 'dark';
 
 document.body.classList.add(savedMode + '-mode');
 
-updateToggleText(savedMode);
+let typingTimeout;
+
+const toggleBtn = document.createElement("button");
+
+toggleBtn.id = "mode-toggle";
+toggleBtn.textContent = "/";
+
+const navbarContainer = document.querySelector(".navbar__container");
+
+navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
+
+function getText() {
+    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
+
+    return currentMode === 'dark' ? "* light mode" : "* dark mode";
+}
+
+function typeText(text) {
+    clearTimeout(typingTimeout);
+
+    toggleBtn.textContent = "";
+
+    let i = 0;
+
+    function typeChar() {
+        if (i < text.length) {
+            toggleBtn.textContent += text[i];
+
+            i++;
+
+            typingTimeout = setTimeout(typeChar, Math.random() * 120);
+        }
+    }
+
+    typeChar();
+}
+
+toggleBtn.addEventListener('mouseenter', () => {
+    clearTimeout(typingTimeout);
+
+    typeText(getText());
+});
+
+toggleBtn.addEventListener('mouseleave', () => {
+    clearTimeout(typingTimeout);
+
+    toggleBtn.textContent = "/";
+});
 
 toggleBtn.addEventListener('click', () => {
-    const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
     const newMode = currentMode === 'dark' ? 'light' : 'dark';
 
     document.body.classList.remove(currentMode + '-mode');
     document.body.classList.add(newMode + '-mode');
     localStorage.setItem('mode', newMode);
 
-    updateToggleText(newMode);
+    clearTimeout(typingTimeout);
+    typeText(getText());
 });

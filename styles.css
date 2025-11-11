@@ -47,7 +47,8 @@
   text-decoration: none;
   font-size: 2rem;
   user-select: none;
-  transform: translateY(-1px); /* for segoe ui */
+  order: 0;
+  transform: translateY(-0.1em); /* for segoe ui */
 }
 
 .navbar__menu {
@@ -55,6 +56,7 @@
   align-items: center;
   list-style: none;
   text-align: center;
+  order: 2;
 }
 
 .navbar__item {
@@ -114,6 +116,7 @@
 
   #navbar__logo {
     padding-left: 25px;
+    transform: translateY(-0.12em); /* for segoe ui */
   }
 
   .navbar__toggle .bar {
@@ -406,14 +409,6 @@ audio::-webkit-media-controls-volume-slider:hover {
   user-select: none;
 }
 
-.main__content p {
-  font-size: 1.2rem;
-  margin-bottom: 1.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  user-select: none;
-}
-
 .multiple {
   margin-top: 1.2rem;
 }
@@ -617,66 +612,41 @@ audio::-webkit-media-controls-volume-slider:hover {
 }
 
 body.dark-mode {
-  background-color: #000000;
-  color: #ffffff;
+    filter: invert(1) hue-rotate(180deg);
 }
 
-body.light-mode {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-body.dark-mode .navbar {
-  background-color: #000000;
-}
-
-body.dark-mode .navbar__links {
-  color: #ffffff;
-}
-
-body.light-mode .navbar {
-  background-color: #ffffff;
-}
-
-body.light-mode .navbar__links {
-  color: #000000;
-}
-
-body.dark-mode .main__content h1 {
-  background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
-}
-
-body.dark-mode .main__content h2,
-body.dark-mode .main__content p {
-  color: #ffffff;
-}
-
-body.light-mode .main__content h2,
-body.light-mode .main__content p {
-  color: #000000;
-}
-
-body.light-mode .main__content h1 {
-  background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
+body.dark-mode img,
+body.dark-mode video {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 #mode-toggle {
+  color: #ffffff;
   font-size: 1.2rem;
+  margin: 0 auto;
+  order: 1;
   background: transparent;
   border: none;
   cursor: pointer;
   user-select: none;
+  max-width: 1ch;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  transform: translateY(0.025em); /* for segoe ui */
 }
 
 #mode-toggle:hover {
+  max-width: 12ch;
   color: #808080;
   transition: all 0.3s ease;
 }
 
-/* add mobile support or an auto-revert to dark mode */
-
 @media screen and (max-width: 960px) {
-  #mode-toggle {
-    display: none;
+  #navbar__logo {
+    order: 0;
+  }
+
+  #mobile-menu {
+    order: 2;
   }
 }
