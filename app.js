@@ -366,3 +366,39 @@ toggleBtn.addEventListener('click', () => {
     clearTimeout(typingTimeout);
     typeText(getText());
 });
+
+async function flushCache() {
+    try {
+        const lastKnown = localStorage.getItem('last_updated');
+        const response = await fetch(`info.json?cb=${Date.now()}`, { cache: "no-store" });
+        const data = await response.json();
+
+        if (lastKnown && lastKnown !== data.last_updated) {
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+
+                await Promise.all(cacheNames.map(c => caches.delete(c)));
+            }
+
+            const _c = confirm("testing, reload?");
+            if (_c) {
+                localStorage.setItem("last_updated", data.last_updated);
+                window.location.reload(true);
+            }
+
+            /*
+
+            localStorage.setItem('last_updated', data.last_updated);
+            window.location.reload(true);
+
+            */
+        } else if (!lastKnown) {
+            localStorage.setItem('last_updated', data.last_updated);
+        }
+
+    } catch (error) {
+        console.error("cache check error: ", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", flushCache);
