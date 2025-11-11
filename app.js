@@ -14,19 +14,9 @@ async function flushCache() {
 
                 await Promise.all(cacheNames.map(c => caches.delete(c)));
             }
-
-            const _c = confirm("AAAAAAAAAAAAAAAAAA");
-            if (_c) {
-                localStorage.setItem('last_updated', data.last_updated);
-                window.location.reload(true);
-            }
-
-            /*
             
             localStorage.setItem('last_updated', data.last_updated);
             window.location.reload(true);
-
-            */
         } else if (!lastKnown) {
             localStorage.setItem('last_updated', data.last_updated);
         }
