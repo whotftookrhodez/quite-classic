@@ -116,7 +116,6 @@
 
   #navbar__logo {
     padding-left: 25px;
-    transform: translateY(-0.12em); /* for segoe ui */
   }
 
   .navbar__toggle .bar {
@@ -139,12 +138,9 @@
   }
 
   #mobile-menu {
-    /* close enough */
-
     position: absolute;
-    top: 25%;
-    right: 5.5%;
-    transform: translate(5.4166666667%, 25%); /* why? funny. */
+    right: 25px;
+    transform: translateY(95%);
   }
 
   .navbar__toggle .bar {
@@ -629,24 +625,18 @@ body.dark-mode video {
   border: none;
   cursor: pointer;
   user-select: none;
-  max-width: 1ch;
+  max-width: 12ch;
   white-space: nowrap;
   transition: all 0.3s ease;
   transform: translateY(0.025em); /* for segoe ui */
 }
 
 #mode-toggle:hover {
-  max-width: 12ch;
   color: #808080;
   transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 960px) {
-  #mode-toggle {
-    max-width: 12ch;
-    transform: translateY(-0.05em); /* for segoe ui */
-  }
-
   #navbar__logo {
     order: 0;
   }
