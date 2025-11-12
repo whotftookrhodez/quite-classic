@@ -16,7 +16,7 @@ navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
 function getText() {
     const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
 
-    return currentMode === 'dark' ? "* light mode" : "* dark mode";
+    return currentMode === 'dark' ? "* lm" : "* dm";
 }
 
 function typeText(text) {
@@ -398,6 +398,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw();
 });
-
-console.log("funny");
-console.error("funny 2");
