@@ -672,3 +672,7 @@ body.light-mode video {
     font-size: 0.96rem;
   }
 }
+
+#mobile-menu {
+  transform: translateY(105%) !important;
+}
