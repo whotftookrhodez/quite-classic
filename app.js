@@ -216,6 +216,20 @@ function slugify(s) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname.startsWith("/audio/") || !window.location.pathname === "/audio/") {
+        const cover = document.querySelector('.audio-cover');
+
+        if (cover) {
+            cover.addEventListener('mouseenter', () => {
+                cover.classList.add('hover-tilt');
+            });
+
+            cover.addEventListener('mouseleave', () => {
+                cover.classList.remove('hover-tilt');
+            });
+        }
+    }
+
     if (!window.location.pathname.endsWith("/audio")) {
         return;
     }

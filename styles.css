@@ -605,6 +605,19 @@ body.embed-page .audio-cover.clickable:hover {
   transform: scale(1.2);
 }
 
+@keyframes tiltLoop {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(5deg);}
+  50% {transform: rotate(0deg);}
+  75% {transform: rotate(-5deg);}
+  100% {transform: rotate(0deg);}
+}
+
+.hover-tilt {
+  animation: tiltLoop 1.5s ease-in-out infinite;
+  transform-origin: center center;
+}
+
 body.embed-page .audio-text.clickable:hover {
   transform: none;
 }
