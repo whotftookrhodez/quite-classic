@@ -610,7 +610,7 @@ body.embed-page .audio-item {
 }
 
 .hover-tilt {
-  animation: tiltLoop 1.2s linear infinite;
+  animation: tiltLoop 1.2s ease infinite;
 }
 
 body.embed-page .audio-text.clickable:hover {
