@@ -1,3 +1,68 @@
+const savedMode = localStorage.getItem('mode') || 'dark';
+
+document.body.classList.add(savedMode + '-mode');
+
+let typingTimeout;
+
+const toggleBtn = document.createElement("button");
+
+toggleBtn.id = "mode-toggle";
+toggleBtn.textContent = "/";
+
+const navbarContainer = document.querySelector(".navbar__container");
+
+navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
+
+function getText() {
+    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
+
+    return currentMode === 'dark' ? "* dm" : "* lm";
+}
+
+function typeText(text) {
+    clearTimeout(typingTimeout);
+
+    toggleBtn.textContent = "";
+
+    let i = 0;
+
+    function typeChar() {
+        if (i < text.length) {
+            toggleBtn.textContent += text[i];
+
+            i++;
+
+            typingTimeout = setTimeout(typeChar, Math.random() * 120);
+        }
+    }
+
+    typeChar();
+}
+
+toggleBtn.addEventListener('mouseenter', () => {
+    clearTimeout(typingTimeout);
+
+    typeText(getText());
+});
+
+toggleBtn.addEventListener('mouseleave', () => {
+    clearTimeout(typingTimeout);
+
+    toggleBtn.textContent = "/";
+});
+
+toggleBtn.addEventListener('click', () => {
+    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
+    const newMode = currentMode === 'dark' ? 'light' : 'dark';
+
+    document.body.classList.remove(currentMode + '-mode');
+    document.body.classList.add(newMode + '-mode');
+    localStorage.setItem('mode', newMode);
+
+    clearTimeout(typingTimeout);
+    typeText(getText());
+});
+
 (async () => {
     await flushCache();
 })();
@@ -332,69 +397,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw();
-});
-
-const savedMode = localStorage.getItem('mode') || 'light';
-
-document.body.classList.add(savedMode + '-mode');
-
-let typingTimeout;
-
-const toggleBtn = document.createElement("button");
-
-toggleBtn.id = "mode-toggle";
-toggleBtn.textContent = "/";
-
-const navbarContainer = document.querySelector(".navbar__container");
-
-navbarContainer.insertBefore(toggleBtn, navbarContainer.children[1]);
-
-function getText() {
-    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
-
-    return currentMode === 'dark' ? "* lm" : "* dm";
-}
-
-function typeText(text) {
-    clearTimeout(typingTimeout);
-
-    toggleBtn.textContent = "";
-
-    let i = 0;
-
-    function typeChar() {
-        if (i < text.length) {
-            toggleBtn.textContent += text[i];
-
-            i++;
-
-            typingTimeout = setTimeout(typeChar, Math.random() * 120);
-        }
-    }
-
-    typeChar();
-}
-
-toggleBtn.addEventListener('mouseenter', () => {
-    clearTimeout(typingTimeout);
-
-    typeText(getText());
-});
-
-toggleBtn.addEventListener('mouseleave', () => {
-    clearTimeout(typingTimeout);
-
-    toggleBtn.textContent = "/";
-});
-
-toggleBtn.addEventListener('click', () => {
-    const currentMode = document.body.classList.contains("dark-mode") ? 'dark' : 'light';
-    const newMode = currentMode === 'dark' ? 'light' : 'dark';
-
-    document.body.classList.remove(currentMode + '-mode');
-    document.body.classList.add(newMode + '-mode');
-    localStorage.setItem('mode', newMode);
-
-    clearTimeout(typingTimeout);
-    typeText(getText());
 });
