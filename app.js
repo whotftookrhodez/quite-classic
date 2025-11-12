@@ -221,11 +221,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (cover) {
             cover.addEventListener('mouseenter', () => {
-                cover.classList.add('hover-tilt');
+                cover.classList.add('zoom-in', 'hover-tilt');
+                cover.classList.remove('zoom-out');
             });
 
             cover.addEventListener('mouseleave', () => {
-                cover.classList.remove('hover-tilt');
+                cover.classList.remove('zoom-in', 'hover-tilt');
+                cover.classList.add('zoom-out');
             });
         }
     }
