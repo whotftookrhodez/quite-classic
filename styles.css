@@ -142,7 +142,7 @@
   #mobile-menu {
     position: absolute;
     right: 25px;
-    transform: translateY(90%);
+    transform: translateY(90%); /* og 102.5% */
   }
 
   #mobile-menu.is-active .bar:nth-child(2) {
