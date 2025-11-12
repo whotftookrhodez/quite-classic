@@ -1,3 +1,5 @@
+console.log("you saw nothing")
+
 const savedMode = localStorage.getItem('mode') || 'dark';
 
 document.body.classList.add(savedMode + '-mode');
@@ -70,7 +72,7 @@ toggleBtn.addEventListener('click', () => {
 async function flushCache() {
     try {
         const lastKnown = localStorage.getItem('last_updated');
-        const response = await fetch(`info.json?cb=${Date.now()}`, { cache: "no-store" });
+        const response = await fetch(`/info.json?cb=${Date.now()}`, { cache: "no-store" });
         const data = await response.json();
 
         if (lastKnown && lastKnown !== data.last_updated) {
@@ -237,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let outlineColor = "#000000";
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (!canvas) return;
     if (window.innerWidth <= 960) return;
 
     const canvas = document.getElementById("background");
