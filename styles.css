@@ -601,29 +601,16 @@ body.embed-page .audio-item {
   overflow: visible !important;
 }
 
-@keyframes zoomIn {
-  0%   {transform: scale(1);}
-  100% {transform: scale(1.2);}
-}
-
-.zoom-in {
-  animation: zoomIn 0.3s ease-out forwards;
-}
-
-.zoom-out {
-  animation: zoomIn 0.3s ease-in reverse forwards;
-}
-
 @keyframes tiltLoop {
-  0% {transform: rotate(0deg);}
-  25% {transform: rotate(5deg);}
-  50% {transform: rotate(0deg);}
-  75% {transform: rotate(-5deg);}
-  100% {transform: rotate(0deg);}
+  0% {transform: scale(1) rotate(0deg);}
+  25% {transform: scale(1.1) rotate(5deg);}
+  50% {transform: scale(1.2) rotate(0deg);}
+  75% {transform: scale(1.1) rotate(-5deg);}
+  100% {transform: scale(1) rotate(0deg);}
 }
 
 .hover-tilt {
-  animation: tiltLoop 1.2s ease-in-out infinite;
+  animation: tiltLoop 4.8s ease-in-out infinite;
 }
 
 body.embed-page .audio-text.clickable:hover {

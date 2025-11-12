@@ -216,17 +216,16 @@ function slugify(s) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname.startsWith("/audio/") || !window.location.pathname === "/audio/") {
+    if (window.location.pathname.startsWith("/audio/")) {
         const cover = document.querySelector('.audio-cover');
 
         if (cover) {
             cover.addEventListener('mouseenter', () => {
-                cover.classList.add('zoom-in', 'hover-tilt');
-                cover.classList.remove('zoom-out');
+                cover.classList.add('hover-tilt');
             });
 
             cover.addEventListener('mouseleave', () => {
-                cover.classList.remove('zoom-in', 'hover-tilt');
+                cover.classList.remove('hover-tilt');
             });
         }
     }
