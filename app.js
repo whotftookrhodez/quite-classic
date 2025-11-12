@@ -72,7 +72,7 @@ toggleBtn.addEventListener('click', () => {
 async function flushCache() {
     try {
         const lastKnown = localStorage.getItem('last_updated');
-        const response = await fetch(`info.json?cb=${Date.now()}`, { cache: "no-store" });
+        const response = await fetch(`${window.location.origin}/info.json?cb=${Date.now()}`, { cache: "no-store" });
         const data = await response.json();
 
         if (lastKnown && lastKnown !== data.last_updated) {
