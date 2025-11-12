@@ -119,11 +119,13 @@
   }
 
   .navbar__toggle .bar {
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
+    width: 1.6rem;
+    height: 0.16rem;
+    margin: 0.32rem auto;
     transition: all 0.3s ease-in-out;
     background: #ffffff;
+    display: block;
+    cursor: pointer;
   }
 
   .navbar__item {
@@ -140,12 +142,7 @@
   #mobile-menu {
     position: absolute;
     right: 25px;
-    transform: translateY(95%);
-  }
-
-  .navbar__toggle .bar {
-    display: block;
-    cursor: pointer;
+    transform: translateY(102.5%);
   }
 
   #mobile-menu.is-active .bar:nth-child(2) {
