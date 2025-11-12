@@ -88,6 +88,8 @@
     width: 100%;
     max-width: 1300px;
     padding: 0;
+
+    align-items: center;
   }
 
   .navbar__menu {
@@ -142,7 +144,8 @@
   #mobile-menu {
     position: absolute;
     right: 25px;
-    transform: translateY(90%); /* og 102.5% */
+    top: 50%;
+    transform: translateY(-50%); /* og 102.5% */
   }
 
   #mobile-menu.is-active .bar:nth-child(2) {
