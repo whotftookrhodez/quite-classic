@@ -615,7 +615,6 @@ body.embed-page .audio-cover.clickable:hover {
 
 .hover-tilt {
   animation: tiltLoop 1.5s ease-in-out infinite;
-  transform-origin: center center;
 }
 
 body.embed-page .audio-text.clickable:hover {
