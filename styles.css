@@ -403,6 +403,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   object-fit: contain;
   border-radius: 8px;
   user-select: none;
+  transform-origin: center center;
 }
 
 .audio-text {
