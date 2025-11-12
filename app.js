@@ -72,7 +72,7 @@ toggleBtn.addEventListener('click', () => {
 async function flushCache() {
     try {
         const lastKnown = localStorage.getItem('last_updated');
-        const response = await fetch(`/info.json?cb=${Date.now()}`, { cache: "no-store" });
+        const response = await fetch(`info.json?cb=${Date.now()}`, { cache: "no-store" });
         const data = await response.json();
 
         if (lastKnown && lastKnown !== data.last_updated) {
@@ -239,10 +239,12 @@ document.addEventListener("DOMContentLoaded", () => {
 let outlineColor = "#000000";
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!canvas) return;
     if (window.innerWidth <= 960) return;
 
     const canvas = document.getElementById("background");
+
+    if (!canvas) return;
+
     const containerMaxWidth = 1300;
     const navbarHeight = 80;
     const normX = 0.75;
