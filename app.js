@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
 });
 
-const savedMode = localStorage.getItem('mode') || 'dark';
+const savedMode = localStorage.getItem('mode') || 'light';
 
 document.body.classList.add(savedMode + '-mode');
 
