@@ -157,14 +157,14 @@
     opacity: 0;
   }
 
-  /* (16 - 12.5) / 2 + 12.5 */
+  /* (16 - 12.5) / 8 + 12.5 = theoretical perfect center */
 
   #mobile-menu.is-active .bar:nth-child(1) {
-    transform: translateY(14.25px) rotate(45deg);
+    transform: translateY(12.9375px) rotate(45deg);
   }
 
   #mobile-menu.is-active .bar:nth-child(3) {
-    transform: translateY(-14.25px) rotate(-45deg);
+    transform: translateY(-12.9375px) rotate(-45deg);
   }
 }
 
