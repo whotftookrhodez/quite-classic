@@ -602,14 +602,15 @@ body.embed-page .audio-item {
 }
 
 @keyframes tiltLoop {
-  0% {transform: scale(1.2) rotate(0deg);}
-  33% {transform: scale(1.2) rotate(5deg);}
-  66% {transform: scale(1.2) rotate(0deg);}
-  100% {transform: scale(1.2) rotate(-5deg);}
+  0% {transform: scale(1) rotate(0deg);}
+  25% {transform: scale(1.1) rotate(5deg);}
+  50% {transform: scale(1.2) rotate(0deg);}
+  75% {transform: scale(1.1) rotate(-5deg);}
+  100% {transform: scale(1)  rotate(0deg);}
 }
 
 .hover-tilt {
-  animation: tiltLoop 1.5s ease-in-out infinite;
+  animation: tiltLoop 1.2s ease-in-out infinite;
 }
 
 body.embed-page .audio-text.clickable:hover {
