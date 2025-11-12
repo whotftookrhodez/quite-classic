@@ -227,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cover.addEventListener('mouseleave', () => {
                 cover.classList.remove('zoom-in', 'hover-tilt');
-                cover.classList.add('zoom-out');
             });
         }
     }
