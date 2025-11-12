@@ -603,9 +603,9 @@ body.embed-page .audio-item {
 
 @keyframes tiltLoop {
   0% {transform: scale(1) rotate(0deg);}
-  25% {transform: scale(1.025) rotate(1.25deg);}
-  50% {transform: scale(1.05) rotate(0deg);}
-  75% {transform: scale(1.025) rotate(-1.25deg);}
+  25% {transform: scale(1.0125) rotate(0.625deg);}
+  50% {transform: scale(1.025) rotate(0deg);}
+  75% {transform: scale(1.0125) rotate(-0.625deg);}
   100% {transform: scale(1) rotate(0deg);}
 }
 
