@@ -610,7 +610,7 @@ body.embed-page .audio-item {
 }
 
 .hover-tilt {
-  animation: tiltLoop 1.2s cubic-bezier(calc(2 / 3), calc(1 / 3), calc(1 / 3), calc(2 / 3)) infinite;
+  animation: tiltLoop 4.8s cubic-bezier(calc(2 / 3), calc(1 / 3), calc(1 / 3), calc(2 / 3)) infinite;
 }
 
 body.embed-page .audio-text.clickable:hover {
