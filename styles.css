@@ -601,15 +601,11 @@ body.embed-page .audio-item {
   overflow: visible !important;
 }
 
-body.embed-page .audio-cover.clickable:hover {
-  transform: scale(1.2);
-}
-
 @keyframes tiltLoop {
-  0% {transform: scale(1.2), rotate(0deg);}
-  33% {transform: scale(1.2), rotate(5deg);}
-  66% {transform: scale(1.2), rotate(0deg);}
-  100% {transform: scale(1.2), rotate(-5deg);}
+  0% {transform: scale(1.2) rotate(0deg);}
+  33% {transform: scale(1.2) rotate(5deg);}
+  66% {transform: scale(1.2) rotate(0deg);}
+  100% {transform: scale(1.2) rotate(-5deg);}
 }
 
 .hover-tilt {
