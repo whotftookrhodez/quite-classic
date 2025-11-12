@@ -82,14 +82,13 @@
 @media screen and (max-width: 960px) {
   .navbar__container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     height: 80px;
     z-index: 1;
     width: 100%;
     max-width: 1300px;
     padding: 0;
-
-    align-items: center;
   }
 
   .navbar__menu {
@@ -145,7 +144,7 @@
     position: absolute;
     right: 25px;
     top: 50%;
-    transform: translateY(-50%); /* og 102.5% */
+    transform: translateY(-25%); /* og 102.5% */
   }
 
   #mobile-menu.is-active .bar:nth-child(2) {
@@ -657,6 +656,11 @@ body.light-mode video {
 @media screen and (max-width: 960px) {
   #navbar__logo {
     order: 0;
+    transform: none;
+  }
+
+  #mode-toggle {
+    transform: translateY(0.15em);
   }
 
   #mobile-menu {
