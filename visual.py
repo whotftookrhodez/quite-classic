@@ -76,7 +76,6 @@ def render_html_page(items):
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <canvas id="background"></canvas>
     <nav class="navbar">
         <div class="navbar__container">
             <a href="/" id="navbar__logo">quite classic</a>
