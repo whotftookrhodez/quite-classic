@@ -157,7 +157,7 @@
     opacity: 0;
   }
 
-  /* (16 - 12.5) / 8 + 12.5 = theoretical perfect center */
+  /* (16 - 12.5) / 8 + 12.5 = 12.9375 - theoretical perfect center */
 
   #mobile-menu.is-active .bar:nth-child(1) {
     transform: translateY(12.9375px) rotate(45deg);
@@ -236,6 +236,7 @@
   z-index: 0;
   text-decoration: none;
   user-select: none;
+  overflow: hidden; /* i'm such a good dev */
 }
 
 .main__btn:after {
