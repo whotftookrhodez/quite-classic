@@ -236,7 +236,7 @@
   z-index: 0;
   text-decoration: none;
   user-select: none;
-  overflow: hidden; /* i'm such a good dev */
+  overflow: hidden;
 }
 
 .main__btn:after {
