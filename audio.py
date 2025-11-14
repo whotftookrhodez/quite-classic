@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+import sys
+
+sys.stderr.flush()
+sys.stdout.flush()
+
 from data import audio
 import os, re, pathlib, html, urllib.parse
 
@@ -118,6 +123,7 @@ def render_html_page(items, slug=None, current=None):
 '''
 
 import traceback
+
 
 def main():
     items = {slugify(k): v for k, v in audio.data.items()}
