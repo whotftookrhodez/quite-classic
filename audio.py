@@ -118,13 +118,7 @@ def render_html_page(items, slug=None, current=None):
 '''
 
 def main():
-    items = {}
-
-    for k, v in audio.data.items():
-        title_slug = slugify(v["title"].split(' - ', 1)[1])
-        v["_slug"] = title_slug
-
-        items[title_slug] = v
+    items = {slugify(k): v for k, v in audio.data.items()}
 
     make_dirs(OUT_DIR)
 
