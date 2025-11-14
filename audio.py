@@ -59,7 +59,11 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{DOMAIN}/audio/{urllib.parse.quote(slug)}" if slug else ''
-    audio_items_html = '\n'.join([render_audio_item(item, slug=k) for k, item in items.items()])
+
+    if isinstance(items, dict):
+        audio_items_html = '\n'.join([render_audio_item(item, slug=k) for k, item in items.items()])
+    else:
+        audio_items_html = '\n'.join([render_audio_item(item) for item in items])
 
     return f'''
 <!DOCTYPE html>
