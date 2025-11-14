@@ -1,5 +1,5 @@
 data = {
-    "city square trance 2009": {
+    "city_square_trance_2009": {
         "title": "r - city square trance 2009",
         "cover": "",
         "tracks": [
