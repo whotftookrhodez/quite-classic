@@ -1,4 +1,4 @@
-console.log("you saw nothing")
+console.log("a you saw nothing")
 
 const savedMode = localStorage.getItem('mode') || 'dark';
 
