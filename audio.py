@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
-
-sys.stderr.flush()
-sys.stdout.flush()
-
 from data import audio
 import os, re, pathlib, html, urllib.parse
 
@@ -122,9 +117,6 @@ def render_html_page(items, slug=None, current=None):
 </html>
 '''
 
-import traceback
-
-
 def main():
     items = {slugify(k): v for k, v in audio.data.items()}
 
@@ -137,12 +129,7 @@ def main():
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    try:
-        all_html = render_html_page(list(items.values()))
-    except Exception as e:
-        print('error: ')
-        traceback.print_exc()
-        raise
+    all_html = render_html_page(list(items.values()))
 
     with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
