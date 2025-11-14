@@ -1,4 +1,14 @@
 data = {
+    "city_square_trance_2009": {
+        "title": "r - city square trance 2009",
+        "cover": "",
+        "tracks": [
+            {
+                "mp3": "/assets/audio/stream/city square trance 2009.mp3",
+                "flac": "/assets/audio/download/city square trance 2009.flac"
+            }
+        ]
+    },
     "this_project_does_not_exist": {
         "title": "AfterTrasen - This_project_does_not_exist",
         "cover": "",
