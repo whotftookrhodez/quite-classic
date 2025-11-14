@@ -20,15 +20,13 @@ def make_dirs(p):
 def h(x):
     return html.escape(x or '', quote=True)
 
-def render_audio_item(item, slug=None):
+def render_audio_item(item):
     title = item.get('title', '')
     cover = item.get('cover', '')
     tracks = item.get('tracks', [])
     audio_html = ""
     flac_files = []
-
-    if not slug:
-        slug = slugify(title.split(' - ', 1)[1])
+    slug = item.get('slug') or slugify(title.split(' - ', 1)[1])
 
     for track in tracks:
         mp3 = track.get('mp3', '')
@@ -59,11 +57,7 @@ def render_html_page(items, slug=None, current=None):
     og_title = h(current.get('title')) if current else ''
     og_image = h(current.get('cover')) if current else ''
     og_url = f"{DOMAIN}/audio/{urllib.parse.quote(slug)}" if slug else ''
-
-    if isinstance(items, dict):
-        audio_items_html = '\n'.join([render_audio_item(item, slug=k) for k, item in items.items()])
-    else:
-        audio_items_html = '\n'.join([render_audio_item(item) for item in items])
+    audio_items_html = '\n'.join([render_audio_item(item) for item in items])
 
     return f'''
 <!DOCTYPE html>
@@ -135,7 +129,7 @@ def main():
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    all_html = render_html_page(list(items.values()))
+    all_html = render_html_page([{**item, 'slug': slug} for slug, item in items.items()])
 
     with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
