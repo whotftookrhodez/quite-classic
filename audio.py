@@ -131,7 +131,7 @@ def main():
 
     all_html = render_html_page(list(items.values()))
 
-    with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(ROOT, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
 
 if __name__ == '__main__':
