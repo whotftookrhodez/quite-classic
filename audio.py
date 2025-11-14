@@ -26,7 +26,7 @@ def render_audio_item(item):
     tracks = item.get('tracks', [])
     audio_html = ""
     flac_files = []
-    slug = slugify(title.split(' - ', 1)[1])
+    slug = item.get('slug') or slugify(title.split(' - ', 1)[1])
 
     for track in tracks:
         mp3 = track.get('mp3', '')
@@ -129,7 +129,7 @@ def main():
         with open(out_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    all_html = render_html_page(list(items.values()))
+    all_html = render_html_page([{**item, 'slug': slug} for slug, item in items.items()])
 
     with open(os.path.join(OUT_DIR, 'audio.html'), 'w', encoding='utf-8') as f:
         f.write(all_html)
