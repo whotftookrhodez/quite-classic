@@ -110,6 +110,9 @@ async function downloadAudio(audioUrls, coverUrl, title) {
 
     for (const url of audioUrls) {
         const fileName = getFileNameFromUrl(url);
+
+        url = encodeURI(url);
+
         const audioData = await fetch(url).then(r => r.blob());
         
         zip.file(fileName, audioData);
