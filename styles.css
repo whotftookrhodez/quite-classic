@@ -628,7 +628,7 @@ body.embed-page .audio-text.clickable:hover {
 }
 
 @media screen and (min-width: 961px) {
-  body .main__container, .navbar {
+  body .main__container {
     position: relative;
     z-index: 1;
   }
@@ -652,10 +652,6 @@ body.embed-page .audio-text.clickable:hover {
 
 body.light-mode {
   filter: invert(1) hue-rotate(180deg);
-}
-
-body.light-mode #page-transition {
-  filter: invert(1) hue-rotate(180deg); /* i feel slimy */
 }
 
 body.light-mode img,
