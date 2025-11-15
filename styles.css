@@ -650,7 +650,7 @@ body.embed-page .audio-text.clickable:hover {
   }
 }
 
-body.light-mode *:not(img):not(video){
+body.light-mode body:not(img):not(video){
   filter: invert(1) hue-rotate(180deg);
 }
 
