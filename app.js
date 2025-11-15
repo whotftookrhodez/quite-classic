@@ -1,5 +1,11 @@
 console.log("you saw nothing")
 
+window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+        document.body.classList.add('loaded');
+    });
+});
+
 const savedMode = localStorage.getItem('mode') || 'dark';
 
 document.body.classList.add(savedMode + '-mode');

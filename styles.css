@@ -182,6 +182,9 @@
   max-width: 1300px;
   padding-right: 50px;
   padding-left: 50px;
+  opacity: 0;
+  transform: translateY(9px);
+  transition: opacity 0.3s cubic-bezier(0, 0.5, 0.5, 1), transform 0.3s cubic-bezier(0, 0.5, 0.5, 1);
 }
 
 .main__content h1 {
@@ -328,6 +331,11 @@ html, body {
   background-color: #000000;
   height: 100%;
   overflow-x: hidden;
+}
+
+body.loaded .main__container {
+  opacity: 1;
+  transform: none;
 }
 
 a {
@@ -684,10 +692,6 @@ body.light-mode video {
 @media screen and (max-width: 768px) {
   #mode-toggle {
     font-size: 1.08rem;
-  }
-
-  #mobile-menu {
-    transform: translateY(calc(-50% + 0.3em));
   }
 }
 
