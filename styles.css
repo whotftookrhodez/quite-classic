@@ -149,8 +149,9 @@
     position: absolute;
     right: 25px;
     top: 50%;
-    transform: translateY(calc(-50% + 0.25em));
+    transform: translateY(calc(-50% + 0.24em));
     transition: all 0.3s ease;
+    order: 2;
   }
 
   #mobile-menu.is-active .bar:nth-child(2) {
@@ -678,10 +679,6 @@ body.light-mode video {
   #mode-toggle {
     transform: translateY(0.15em);
   }
-
-  #mobile-menu {
-    order: 2;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -700,6 +697,6 @@ body.light-mode video {
   }
 
   #mobile-menu {
-    transform: translateY(calc(-50% + 0.35em));
+    transform: translateY(calc(-50% + 0.36em));
   }
 }
