@@ -650,31 +650,12 @@ body.embed-page .audio-text.clickable:hover {
   }
 }
 
-:root {
-  --page-bg: #000000;
-}
-
 body.light-mode {
   filter: invert(1) hue-rotate(180deg);
-  --page-bg: #ffffff;
 }
 
 body.light-mode #page-transition {
   filter: invert(1) hue-rotate(180deg); /* i feel slimy */
-}
-
-#page-transition {
-  position: fixed;
-  inset: 0;
-  z-index: 2147483647; /* why not */
-  background: var(--page-bg);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.3s cubic-bezier(0, 0.5, 0.5, 1);
-}
-
-body.loaded #page-transition {
-  opacity: 0;
 }
 
 body.light-mode img,
