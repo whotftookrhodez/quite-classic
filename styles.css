@@ -651,12 +651,16 @@ body.embed-page .audio-text.clickable:hover {
 }
 
 body.light-mode {
-  filter: invert(1) hue-rotate(180deg);
+  background: #ffffff;
+  color: #000000;
 }
 
-body.light-mode img,
-body.light-mode video {
-  filter: none !important;
+body.light-mode .navbar,
+body.light-mode .main__content,
+body.light-mode .media-item,
+body.light-mode .audio-item,
+body.light-mode .video-item {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 #mode-toggle {
