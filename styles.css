@@ -656,7 +656,7 @@ body.light-mode {
 
 body.light-mode img,
 body.light-mode video {
-  filter: invert(1) hue-rotate(180deg);
+  filter: none !important;
 }
 
 #mode-toggle {
