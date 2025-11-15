@@ -149,7 +149,7 @@
     position: absolute;
     right: 25px;
     top: 50%;
-    transform: translateY(calc(-50% + 0.24em));
+    transform: translateY(calc(-50% + 0.3em));
     transition: all 0.3s ease;
     order: 2;
   }
@@ -694,9 +694,6 @@ body.light-mode video {
 @media screen and (max-width: 480px) {
   #mode-toggle {
     font-size: 0.96rem;
-  }
-
-  #mobile-menu {
-    transform: translateY(calc(-50% + 0.36em));
+    transform: translateY(0.175em);
   }
 }
