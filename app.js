@@ -1,6 +1,6 @@
 console.log("you saw nothing")
 
-window.addEventListener('load', () => {
+window.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(() => {
         document.body.classList.add('loaded');
     });
