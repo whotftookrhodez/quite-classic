@@ -1,3 +1,5 @@
+/* only way to prevent fouc */
+
 :root {
   --scrollbar-thumb: #808080;
   --scrollbar-track: #000000;
@@ -420,7 +422,7 @@ audio::-webkit-media-controls-panel {
 
 /* lmao. */
 
-audio::-webkit-media-controls-play-button,
+body.dark-mode audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-play-button:hover,
 audio::-webkit-media-controls-mute-button,
 audio::-webkit-media-controls-mute-button:hover,
@@ -433,8 +435,6 @@ audio::-webkit-media-controls-volume-slider,
 audio::-webkit-media-controls-volume-slider:hover {
   filter: grayscale(100%) invert() contrast(1000%);
 }
-
-/**/
 
 .media-item {
   flex-direction: row;
@@ -756,6 +756,8 @@ body.light-mode {
   --mode-toggle-hover: #808080;
   --background: #ffffff;
 }
+
+/*lmao 2 */
 
 body.light-mode audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-play-button:hover,
