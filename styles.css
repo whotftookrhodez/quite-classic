@@ -722,20 +722,6 @@ body.light-mode {
   --background: #ffffff;
 }
 
-body.light-mode audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-play-button:hover,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-volume-slider:hover {
-  filter: grayscale(100%) invert() contrast(1000%);
-}
-
 #mode-toggle {
   color: var(--mode-toggle);
   font-size: 1.2rem;
