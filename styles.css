@@ -423,16 +423,16 @@ audio::-webkit-media-controls-panel {
 /* lmao. */
 
 body.dark-mode audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-play-button:hover,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-volume-slider:hover {
+body.dark-mode audio::-webkit-media-controls-play-button:hover,
+body.dark-mode audio::-webkit-media-controls-mute-button,
+body.dark-mode audio::-webkit-media-controls-mute-button:hover,
+body.dark-mode audio::-webkit-media-controls-current-time-display,
+body.dark-mode audio::-webkit-media-controls-time-remaining-display,
+body.dark-mode audio::-webkit-media-controls-timeline,
+body.dark-mode audio::-webkit-media-controls-mute-button,
+body.dark-mode audio::-webkit-media-controls-mute-button:hover,
+body.dark-mode audio::-webkit-media-controls-volume-slider,
+body.dark-mode audio::-webkit-media-controls-volume-slider:hover {
   filter: grayscale(100%) invert() contrast(1000%);
 }
 
@@ -760,16 +760,16 @@ body.light-mode {
 /*lmao 2 */
 
 body.light-mode audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-play-button:hover,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-mute-button:hover,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-volume-slider:hover {
+body.light-mode audio::-webkit-media-controls-play-button:hover,
+body.light-mode audio::-webkit-media-controls-mute-button,
+body.light-mode audio::-webkit-media-controls-mute-button:hover,
+body.light-mode audio::-webkit-media-controls-current-time-display,
+body.light-mode audio::-webkit-media-controls-time-remaining-display,
+body.light-mode audio::-webkit-media-controls-timeline,
+body.light-mode audio::-webkit-media-controls-mute-button,
+body.light-mode audio::-webkit-media-controls-mute-button:hover,
+body.light-mode audio::-webkit-media-controls-volume-slider,
+body.light-mode audio::-webkit-media-controls-volume-slider:hover {
   filter: grayscale(100%) invert(0%) contrast(1000%);
 }
 
