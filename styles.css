@@ -1,3 +1,38 @@
+:root {
+  --scrollbar-thumb: #808080;
+  --scrollbar-track: #000000;
+  --navbar: #000000;
+  --navbar-logo-background-color: #000000;
+  --navbar-logo-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --navbar-links: #ffffff;
+  --navbar-links-hover: #808080;
+  --navbar-menu: #808080;
+  --navbar-menu-active: #000000;
+  --navbar-toggle-bar: #ffffff;
+  --h1-background-color: #000000;
+  --h1-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --h2-color: #ffffff;
+  --h3-color: #808080;
+  --p-color: #ffffff;
+  --main-btn-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --main-btn-color: #ffffff;
+  --main-btn-after: #ffffff;
+  --main-btn-hover: #000000;
+  --html-body: #000000;
+  --a: #808080;
+  --audio-webkit-media-controls-panel: #000000;
+  --media-item: #808080;
+  --audio-item: #808080;
+  --audio-text: #ffffff;
+  --image-item: #808080;
+  --image-text: #ffffff;
+  --video-item: #808080;
+  --video-text: #ffffff;
+  --mode-toggle: #ffffff;
+  --mode-toggle-hover: #808080;
+  --background: #000000;
+}
+
 body.dark-mode {
   --scrollbar-thumb: #808080;
   --scrollbar-track: #000000;
@@ -720,6 +755,20 @@ body.light-mode {
   --mode-toggle: #000000;
   --mode-toggle-hover: #808080;
   --background: #ffffff;
+}
+
+body.light-mode audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-play-button:hover,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-slider:hover {
+  filter: grayscale(100%) invert(0%) contrast(1000%);
 }
 
 #mode-toggle {
