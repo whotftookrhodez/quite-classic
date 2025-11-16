@@ -375,13 +375,14 @@ audio {
   text-align: center;
   border: 2px solid #808080;
   border-radius: 8px;
-  overflow: hidden;
   margin: 2rem auto;
+  box-sizing: border-box;
 }
 
 .audio-item audio {
   width: 100%;
-  max-width: none;
+  max-width: 325px;
+  box-sizing: border-box;
 }
 
 .audio-item .main__btn {
