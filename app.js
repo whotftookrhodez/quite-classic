@@ -359,9 +359,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // funny.
   
     const texture = new Image();
+
     texture.src = "";
+
     let imgLoaded = false;
+
     texture.onload = () => { imgLoaded = true; };
+
+    //
 
     function draw() {
         framesPassed++;
