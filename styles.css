@@ -348,7 +348,6 @@ audio {
   color-scheme: dark;
 }
 
-
 .media-item {
   flex-direction: row;
   align-items: center;
@@ -372,7 +371,7 @@ audio {
   align-items: center !important;
   justify-content: center !important;
   width: 100%;
-  max-width: 325px;
+  max-width: fit-content;
   text-align: center;
   border: 2px solid #808080;
   border-radius: 8px;
@@ -382,7 +381,7 @@ audio {
 
 .audio-item audio {
   width: 100%;
-  max-width: 325px;
+  max-width: none;
 }
 
 .audio-item .main__btn {
