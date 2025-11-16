@@ -1,14 +1,49 @@
+body.dark-mode {
+  --scrollbar-thumb: #808080;
+  --scrollbar-track: #000000;
+  --navbar: #000000;
+  --navbar-logo-background-color: #000000;
+  --navbar-logo-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --navbar-links: #ffffff;
+  --navbar-links-hover: #808080;
+  --navbar-menu: #808080;
+  --navbar-menu-active: #000000;
+  --navbar-toggle-bar: #ffffff;
+  --h1-background-color: #000000;
+  --h1-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --h2-color: #ffffff;
+  --h3-color: #808080;
+  --p-color: #ffffff;
+  --main-btn-background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  --main-btn-color: #ffffff;
+  --main-btn-after: #ffffff;
+  --main-btn-hover: #000000;
+  --html-body: #000000;
+  --a: #808080;
+  --audio-webkit-media-controls-panel: #000000;
+  --media-item: #808080;
+  --audio-item: #808080;
+  --audio-text: #ffffff;
+  --image-item: #808080;
+  --image-text: #ffffff;
+  --video-item: #808080;
+  --video-text: #ffffff;
+  --mode-toggle: #ffffff;
+  --mode-toggle-hover: #808080;
+  --background: #000000;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  scrollbar-color: #808080 #000000;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   scrollbar-width: thin;
 }
 
 .navbar {
-  background: #000000;
+  background: var(--navbar);
   height: 80px;
   display: flex;
   justify-content: center;
@@ -33,8 +68,8 @@
 }
 
 #navbar__logo {
-  background-color: #000000;
-  background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  background-color: var(--navbar-logo-background-color);
+  background-image: var(--navbar-logo-background-image);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -65,7 +100,7 @@
 }
 
 .navbar__links {
-  color: #ffffff;
+  color: var(--navbar-links);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +111,7 @@
 }
 
 .navbar__links:hover {
-  color: #808080;
+  color: var(--navbar-links-hover);
   transition: all 0.3s ease;
 }
 
@@ -103,11 +138,11 @@
     transition: all 0.6s ease;
     height: 50vh;
     z-index: -1;
-    background: #808080;
+    background: var(--navbar-menu);
   }
 
   .navbar__menu.active {
-    background: #000000;
+    background: var(--navbar-menu-active);
     top: 100%;
     opacity: 1;
     transition: all 0.6s ease;
@@ -126,7 +161,7 @@
     height: 0.16rem;
     margin: 0.32rem auto;
     transition: all 0.3s ease-in-out;
-    background: #ffffff;
+    background: var(--navbar-toggle-bar);
     display: block;
     cursor: pointer;
   }
@@ -189,8 +224,8 @@
 
 .main__content h1 {
   font-size: 4rem;
-  background-color: #000000;
-  background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  background-color: var(--h1-background-color);
+  background-image: var(--h1-background-image);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -204,14 +239,14 @@
 .main__content h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #ffffff;
+  color: var(--h2-color);
   user-select: none;
 }
 
 .main__content h3 {
   font-size: 1.6rem;
   margin-bottom: 2rem;
-  color: #808080;
+  color: var(--h3-color);
   user-select: none;
 }
 
@@ -219,17 +254,17 @@
   font-size: 1.2rem;
   margin-bottom: 1.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--p-color);
   user-select: none;
 }
 
 .main__btn {
   font-size: 1.2rem;
-  background-image: linear-gradient(to top, #000000 0%, #ffffff 100%);
+  background-image: var(--main-btn-background-image);
   padding: 14px 32px;
   border: none;
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--main-btn-color);
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   cursor: pointer;
@@ -250,14 +285,14 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: #ffffff;
+  background: var(--main-btn-after);
   transition: all 0.3s;
   border-radius: 8px;
   z-index: -1;
 }
 
 .main__btn:hover {
-  color: #000000;
+  color: var(--main-btn-hover);
 }
 
 .main__btn:hover:after {
@@ -328,7 +363,7 @@
 }
 
 html, body {
-  background-color: #000000;
+  background-color: var(--html-body);
   height: 100%;
   overflow-x: hidden;
 }
@@ -339,13 +374,13 @@ body.loaded .main__container {
 }
 
 a {
-  color: #808080;
+  color: var(--a);
   text-decoration: underline;
   user-select: none;
 }
 
 audio::-webkit-media-controls-panel {
-  background-color: #000000;
+  background-color: var(--audio-webkit-media-controls-panel);
 }
 
 /* lmao. */
@@ -377,7 +412,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   transform-origin: center center;
   transition: transform 0.3s ease;
   max-width: 100vw;
-  border: 4px solid #808080;
+  border: 4px solid var(--media-item);
   border-radius: 4px;
   overflow: hidden;
   padding: 1.2rem;
@@ -391,7 +426,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   width: 100%;
   max-width: 325px;
   text-align: center;
-  border: 2px solid #808080;
+  border: 2px solid var(--audio-item);
   border-radius: 8px;
   overflow: hidden;
   margin: 2rem auto;
@@ -418,7 +453,7 @@ audio::-webkit-media-controls-volume-slider:hover {
 }
 
 .audio-text {
-  color: #ffffff;
+  color: var(--audio-text);
   font-size: 1.2rem;
   margin-top: 1.2rem;
   user-select: none;
@@ -446,7 +481,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   max-width: 100%;
   height: auto;
   max-height: 90vh;
-  border: 2px solid #808080;
+  border: 2px solid var(--image-item);
   border-radius: 8px;
   overflow: hidden;
   margin: 2rem auto;
@@ -464,7 +499,7 @@ audio::-webkit-media-controls-volume-slider:hover {
 }
 
 .image-text {
-  color: #ffffff;
+  color: var(--image-text);
   font-size: 1.2rem;
   margin-top: 2.4rem;
   user-select: none;
@@ -480,7 +515,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   align-items: center;
   width: 100%;
   max-width: 100%;
-  border: 2px solid #808080;
+  border: 2px solid var(--video-item);
   border-radius: 8px;
   overflow: hidden;
   background: transparent;
@@ -520,7 +555,7 @@ audio::-webkit-media-controls-volume-slider:hover {
 }
 
 .video-text {
-  color: #ffffff;
+  color: var(--video-text);
   font-size: 1.2rem;
   margin-top: 1.2rem;
   user-select: none;
@@ -653,16 +688,56 @@ body.embed-page .audio-text.clickable:hover {
 }
 
 body.light-mode {
-  filter: invert(1) hue-rotate(180deg);
+  --scrollbar-thumb: #808080;
+  --scrollbar-track: #ffffff;
+  --navbar: #ffffff;
+  --navbar-logo-background-color: #ffffff;
+  --navbar-logo-background-image: linear-gradient(to bottom, #000000 0%, #ffffff 100%);
+  --navbar-links: #000000;
+  --navbar-links-hover: #808080;
+  --navbar-menu: #808080;
+  --navbar-menu-active: #ffffff;
+  --navbar-toggle-bar: #000000;
+  --h1-background-color: #ffffff;
+  --h1-background-image: linear-gradient(to bottom, #000000 0%, #ffffff 100%);
+  --h2-color: #000000;
+  --h3-color: #808080;
+  --p-color: #000000;
+  --main-btn-background-image: linear-gradient(to bottom, #000000 0%, #ffffff 100%);
+  --main-btn-color: #000000;
+  --main-btn-after: #000000;
+  --main-btn-hover: #ffffff;
+  --html-body: #ffffff;
+  --a: #808080;
+  --audio-webkit-media-controls-panel: #ffffff;
+  --media-item: #808080;
+  --audio-item: #808080;
+  --audio-text: #000000;
+  --image-item: #808080;
+  --image-text: #000000;
+  --video-item: #808080;
+  --video-text: #000000;
+  --mode-toggle: #000000;
+  --mode-toggle-hover: #808080;
+  --background: #ffffff;
 }
 
-body.light-mode img,
-body.light-mode video {
-  filter: invert(1) hue-rotate(180deg);
+body.light-mode audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-play-button:hover,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-slider:hover {
+  filter: grayscale(100%) invert() contrast(1000%);
 }
 
 #mode-toggle {
-  color: #ffffff;
+  color: var(--mode-toggle);
   font-size: 1.2rem;
   margin: 0 auto;
   order: 1;
@@ -677,7 +752,7 @@ body.light-mode video {
 }
 
 #mode-toggle:hover {
-  color: #808080;
+  color: var(--mode-toggle-hover);
   transition: all 0.3s ease;
 }
 

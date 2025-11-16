@@ -47,6 +47,12 @@ function typeText(text) {
     typeChar();
 }
 
+let outlineColor;
+
+function updateOutlineColor() {
+    outlineColor = getComputedStyle(document.body).getPropertyValue('--background');
+}
+
 toggleBtn.addEventListener('mouseenter', () => {
     clearTimeout(typingTimeout);
 
@@ -67,6 +73,7 @@ toggleBtn.addEventListener('click', () => {
     document.body.classList.add(newMode + '-mode');
     localStorage.setItem('mode', newMode);
 
+    updateOutlineColor();
     clearTimeout(typingTimeout);
     typeText(getText());
 });
@@ -256,8 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-let outlineColor = "#000000";
-
 document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth <= 960) return;
 
@@ -421,5 +426,6 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(draw);
     }
 
+    updateOutlineColor();
     draw();
 });
