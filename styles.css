@@ -344,10 +344,27 @@ a {
   user-select: none;
 }
 
-audio {
-  color-scheme: dark;
-  background: #000000;
+audio::-webkit-media-controls-panel {
+  background-color: #000000;
 }
+
+/* lmao. */
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-play-button:hover,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-slider:hover {
+  filter: grayscale(100%) invert() contrast(1000%);
+}
+
+/**/
 
 .media-item {
   flex-direction: row;
@@ -376,7 +393,6 @@ audio {
   text-align: center;
   border: 2px solid #808080;
   border-radius: 8px;
-  overflow: hidden;
   margin: 2rem auto;
 }
 
