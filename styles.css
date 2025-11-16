@@ -389,6 +389,7 @@ audio::-webkit-media-controls-volume-slider:hover {
   align-items: center !important;
   justify-content: center !important;
   width: 100%;
+  max-width: 325px;
   text-align: center;
   margin: 2rem auto;
 }
