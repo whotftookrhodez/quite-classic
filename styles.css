@@ -398,7 +398,7 @@ audio::-webkit-media-controls-volume-slider:hover {
 }
 
 .audio-item audio {
-  width: 80%;
+  width: 90%;
   max-width: 243.75px;
 }
 
