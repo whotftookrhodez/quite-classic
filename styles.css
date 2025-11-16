@@ -345,7 +345,7 @@ a {
 }
 
 audio {
-  background: black;
+  background-color: black !important;
 }
 
 audio::-webkit-media-controls-panel {
