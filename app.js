@@ -221,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function slugify(s) {
     s = s.trim().toLowerCase();
+    s = s.replace(/'/g, '');
     s = s.replace(/[^a-z0-9_-]+/g, '_');
     s = s.replace(/_+/g, '_');
     s = s.replace(/^_+|_+$/g, '');
