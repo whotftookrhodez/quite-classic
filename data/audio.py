@@ -1,4 +1,14 @@
 data = {
+    "it_doesnt_matter": {
+        "title": "AfterTrasen - It doesn't matter",
+        "cover": "",
+        "tracks": [
+            {
+                "mp3": "/assets/audio/stream/It doesn't matter.mp3",
+                "flac": "/assets/audio/download/It doesn't matter.flac"
+            }
+        ]
+    },
     "city_square_trance_2009": {
         "title": "r - city square trance 2009",
         "cover": "",
