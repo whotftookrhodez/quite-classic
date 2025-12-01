@@ -1,4 +1,14 @@
 data = {
+    "timelapse": {
+        "title": "r - timelapse",
+        "cover": "",
+        "tracks": [
+            {
+                "mp3": "/assets/audio/stream/timelapse.mp3",
+                "flac": "/assets/audio/download/timelapse.flac"
+            }
+        ]
+    },
     "it_doesnt_matter": {
         "title": "AfterTrasen - It doesn't matter",
         "cover": "",
