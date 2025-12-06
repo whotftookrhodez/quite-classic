@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from data import visual
 import os, json, urllib.parse, html
 

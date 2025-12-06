@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from data import audio
 import os, re, pathlib, html, urllib.parse
 
