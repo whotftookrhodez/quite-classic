@@ -420,13 +420,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (Math.random() < 0.2) {
             angleX += Math.random() * .018;
         } else {
-            angleX += 0.009;
+            angleX += .009;
         }
 
         if (Math.random() > 0.8) {
             angleY += Math.random() * .018;
         } else {
-            angleY += 0.009;
+            angleY += .009;
         }
 
         requestAnimationFrame(draw);
